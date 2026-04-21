@@ -1,27 +1,27 @@
-<header class="sticky top-0 z-40 bg-white shadow-sm" x-data="{ open: false }">
+﻿<header class="sticky top-0 z-40 bg-white shadow-sm" x-data="{ open: false }">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="flex h-16 items-center justify-between">
 
             {{-- Logo --}}
-            <a href="{{ LaravelLocalization::localizeURL('/') }}" class="flex items-center gap-x-2">
+            <a href="{{ url('/') }}" class="flex items-center gap-x-2">
                 <span class="text-xl font-bold text-[#1e3a5f]">Shahid Brothers</span>
             </a>
 
             {{-- Desktop Navigation --}}
             <nav class="hidden items-center gap-x-8 md:flex">
-                <a href="{{ LaravelLocalization::localizeURL('/') }}"
+                <a href="{{ url('/') }}"
                    class="text-sm font-medium text-gray-700 hover:text-[#1e3a5f] transition-colors {{ request()->routeIs('home') ? 'text-[#1e3a5f] font-semibold' : '' }}">
                     {{ __('Home') }}
                 </a>
-                <a href="{{ LaravelLocalization::localizeURL('/shop') }}"
+                <a href="{{ url('/shop') }}"
                    class="text-sm font-medium text-gray-700 hover:text-[#1e3a5f] transition-colors {{ request()->routeIs('shop') ? 'text-[#1e3a5f] font-semibold' : '' }}">
                     {{ __('Shop') }}
                 </a>
-                <a href="{{ LaravelLocalization::localizeURL('/about') }}"
+                <a href="{{ url('/about') }}"
                    class="text-sm font-medium text-gray-700 hover:text-[#1e3a5f] transition-colors {{ request()->routeIs('about') ? 'text-[#1e3a5f] font-semibold' : '' }}">
                     {{ __('About Us') }}
                 </a>
-                <a href="{{ LaravelLocalization::localizeURL('/contact') }}"
+                <a href="{{ url('/contact') }}"
                    class="text-sm font-medium text-gray-700 hover:text-[#1e3a5f] transition-colors {{ request()->routeIs('contact') ? 'text-[#1e3a5f] font-semibold' : '' }}">
                     {{ __('Contact Us') }}
                 </a>
@@ -50,22 +50,23 @@
     {{-- Mobile Navigation --}}
     <div x-show="open" x-transition class="border-t border-gray-100 md:hidden" style="display:none;">
         <nav class="flex flex-col space-y-1 px-4 py-3">
-            <a href="{{ LaravelLocalization::localizeURL('/') }}"
+            <a href="{{ url('/') }}"
                class="rounded-md px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-[#1e3a5f]">
                 {{ __('Home') }}
             </a>
-            <a href="{{ LaravelLocalization::localizeURL('/shop') }}"
+            <a href="{{ url('/shop') }}"
                class="rounded-md px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-[#1e3a5f]">
                 {{ __('Shop') }}
             </a>
-            <a href="{{ LaravelLocalization::localizeURL('/about') }}"
+            <a href="{{ url('/about') }}"
                class="rounded-md px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-[#1e3a5f]">
                 {{ __('About Us') }}
             </a>
-            <a href="{{ LaravelLocalization::localizeURL('/contact') }}"
+            <a href="{{ url('/contact') }}"
                class="rounded-md px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-[#1e3a5f]">
                 {{ __('Contact Us') }}
             </a>
         </nav>
     </div>
 </header>
+

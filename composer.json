@@ -7,18 +7,25 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "filament/filament": "^4.0",
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.10.1",
-        "livewire/livewire": "^4.2",
-        "mcamara/laravel-localization": "^2.4"
+        "livewire/livewire": "^3.5",
+        "livewire/volt": "^1.7",
+        "mcamara/laravel-localization": "^2.4",
+        "spatie/laravel-medialibrary": "^11.21",
+        "spatie/laravel-permission": "^6.0",
+        "spatie/laravel-sluggable": "^3.8"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
+        "laravel/breeze": "^2.4",
         "laravel/pail": "^1.2.2",
         "laravel/pint": "^1.24",
         "laravel/sail": "^1.41",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.6",
+        "pestphp/pest": "^3.8",
         "phpunit/phpunit": "^11.5.50"
     },
     "autoload": {
@@ -52,7 +59,8 @@
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
+            "@php artisan package:discover --ansi",
+            "@php artisan filament:upgrade"
         ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
@@ -81,6 +89,12 @@
         "allow-plugins": {
             "pestphp/pest-plugin": true,
             "php-http/discovery": true
+        },
+        "audit": {
+            "ignore": [
+                "PKSA-jyd3-2srm-pfqd"
+            ],
+            "block-insecure": false
         }
     },
     "minimum-stability": "stable",

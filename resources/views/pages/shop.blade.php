@@ -1,4 +1,4 @@
-@extends('layouts.app')
+﻿@extends('layouts.storefront')
 
 @section('title', __('Shop - All Products'))
 @section('description', __('Browse our full collection of promotional gifts and items. Keychains, pens, power banks, USB drives, bottles, tumblers and clocks.'))
@@ -11,7 +11,7 @@
 <div class="bg-white border-b border-gray-100">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <nav class="flex items-center gap-x-2 py-3.5 text-sm">
-            <a href="{{ LaravelLocalization::localizeURL('/') }}"
+            <a href="{{ url('/') }}"
                class="text-gray-500 hover:text-primary transition-colors">
                 {{ __('Home') }}
             </a>
@@ -37,7 +37,7 @@
                     {{ __('All Products') }}
                 </h1>
                 <p class="mt-1.5 text-sm text-blue-200">
-                    {{ __('Promotional gifts & branded items — bulk orders welcome') }}
+                    {{ __('Promotional gifts & branded items â€” bulk orders welcome') }}
                 </p>
             </div>
 
@@ -281,7 +281,7 @@
             </div>
 
             <div class="flex shrink-0 flex-col items-center gap-y-3 sm:flex-row sm:gap-x-3">
-                <a href="{{ LaravelLocalization::localizeURL('/contact') }}"
+                <a href="{{ url('/contact') }}"
                    class="inline-flex items-center gap-x-2 rounded-2xl bg-gold px-8 py-3.5 text-sm font-extrabold text-white shadow-xl shadow-amber-900/30 transition-all hover:bg-gold-dark hover:-translate-y-0.5 active:scale-95">
                     {{ __('Get Bulk Quote') }}
                     <svg class="h-4 w-4 rtl:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -302,3 +302,5 @@
 </section>
 
 @endsection
+
+

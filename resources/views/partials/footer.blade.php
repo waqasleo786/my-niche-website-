@@ -1,4 +1,4 @@
-<footer class="bg-[#1e3a5f] text-white">
+﻿<footer class="bg-[#1e3a5f] text-white">
     <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
 
@@ -14,10 +14,10 @@
             <div>
                 <h4 class="text-sm font-semibold uppercase tracking-wider text-blue-300">Quick Links</h4>
                 <ul class="mt-3 space-y-2">
-                    <li><a href="{{ LaravelLocalization::localizeURL('/') }}" class="text-sm text-blue-200 hover:text-white transition-colors">{{ __('Home') }}</a></li>
-                    <li><a href="{{ LaravelLocalization::localizeURL('/shop') }}" class="text-sm text-blue-200 hover:text-white transition-colors">{{ __('Shop') }}</a></li>
-                    <li><a href="{{ LaravelLocalization::localizeURL('/about') }}" class="text-sm text-blue-200 hover:text-white transition-colors">{{ __('About Us') }}</a></li>
-                    <li><a href="{{ LaravelLocalization::localizeURL('/contact') }}" class="text-sm text-blue-200 hover:text-white transition-colors">{{ __('Contact Us') }}</a></li>
+                    <li><a href="{{ url('/') }}" class="text-sm text-blue-200 hover:text-white transition-colors">{{ __('Home') }}</a></li>
+                    <li><a href="{{ url('/shop') }}" class="text-sm text-blue-200 hover:text-white transition-colors">{{ __('Shop') }}</a></li>
+                    <li><a href="{{ url('/about') }}" class="text-sm text-blue-200 hover:text-white transition-colors">{{ __('About Us') }}</a></li>
+                    <li><a href="{{ url('/contact') }}" class="text-sm text-blue-200 hover:text-white transition-colors">{{ __('Contact Us') }}</a></li>
                 </ul>
             </div>
 
@@ -53,3 +53,4 @@
         </div>
     </div>
 </footer>
+

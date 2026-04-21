@@ -12,10 +12,10 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->alias([
-            'localize'                  => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRoutes::class,
-            'localeSessionRedirect'     => \Mcamara\LaravelLocalization\Middleware\LocaleSessionRedirect::class,
-            'localeViewPath'            => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationViewPath::class,
-            'localizationRedirect'      => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRedirectFilter::class,
+            'verified.b2b' => \App\Http\Middleware\EnsureB2bIsVerified::class,
+            'role'         => \Spatie\Permission\Middleware\RoleMiddleware::class,
+            'permission'   => \Spatie\Permission\Middleware\PermissionMiddleware::class,
+            'role_or_permission' => \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

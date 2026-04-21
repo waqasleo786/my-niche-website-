@@ -1,4 +1,4 @@
-@extends('layouts.app')
+﻿@extends('layouts.storefront')
 
 @section('title', __('Contact Us'))
 @section('description', 'Contact Shahid Brothers - Quality promotional items importer in Lahore, Pakistan. Phone: 0308-4570786')
@@ -9,7 +9,7 @@
     <div class="bg-[#1e3a5f] py-10 text-white">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <nav class="mb-2 flex items-center gap-x-2 text-sm text-blue-200" aria-label="Breadcrumb">
-                <a href="{{ LaravelLocalization::localizeURL('/') }}" class="hover:text-white">{{ __('Home') }}</a>
+                <a href="{{ url('/') }}" class="hover:text-white">{{ __('Home') }}</a>
                 <svg class="h-4 w-4 rtl:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                 </svg>
@@ -114,7 +114,7 @@
                                 </span>
                                 <div>
                                     <p class="text-xs font-semibold uppercase tracking-wide text-gray-400">{{ __('Business Hours') }}</p>
-                                    <p class="mt-0.5 text-sm text-gray-700">{{ __('Mon - Sat') }}: 9:00 AM – 7:00 PM</p>
+                                    <p class="mt-0.5 text-sm text-gray-700">{{ __('Mon - Sat') }}: 9:00 AM â€“ 7:00 PM</p>
                                     <p class="text-sm text-gray-500">{{ __('Sunday') }}: {{ __('Closed') }}</p>
                                 </div>
                             </li>
@@ -141,3 +141,5 @@
     </section>
 
 @endsection
+
+

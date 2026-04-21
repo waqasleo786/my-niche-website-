@@ -1,4 +1,4 @@
-@extends('layouts.app')
+﻿@extends('layouts.storefront')
 
 @section('title', __('Quality Imports, Trusted Service'))
 @section('description', __('We import quality promotional and gift items from China and deliver across Pakistan.'))
@@ -15,7 +15,7 @@
                 <svg class="h-3.5 w-3.5 text-gold shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
                 </svg>
-                🎁 {{ __('Free delivery on orders above') }} <strong class="ms-1 text-gold">Rs. 5,000</strong>
+                ðŸŽ {{ __('Free delivery on orders above') }} <strong class="ms-1 text-gold">Rs. 5,000</strong>
             </span>
             <span class="hidden sm:block text-white/30">|</span>
             <span class="flex items-center gap-x-1.5">
@@ -70,7 +70,7 @@
         $slides = [
             [
                 'bg'      => 'from-[#1e3a5f] via-[#1e3a5f] to-[#162e4e]',
-                'badge'   => __('🏆 #1 Promotional Gifts Brand'),
+                'badge'   => __('ðŸ† #1 Promotional Gifts Brand'),
                 'heading' => __('Premium Promotional Gifts for Every Occasion'),
                 'sub'     => __('Bulk orders for businesses. Fast delivery across Pakistan.'),
                 'accent'  => 'text-gold',
@@ -83,7 +83,7 @@
             ],
             [
                 'bg'      => 'from-[#152d4a] via-[#1a3459] to-[#1e3a5f]',
-                'badge'   => __('📦 Minimum 50 pieces per order'),
+                'badge'   => __('ðŸ“¦ Minimum 50 pieces per order'),
                 'heading' => __('Branded Gifts for Your Business'),
                 'sub'     => __('Custom logo printing on keychains, pens, power banks & more.'),
                 'accent'  => 'text-gold',
@@ -96,7 +96,7 @@
             ],
             [
                 'bg'      => 'from-[#1a3356] via-[#1e3a5f] to-[#243f6b]',
-                'badge'   => __('🚚 Delivery across Pakistan'),
+                'badge'   => __('ðŸšš Delivery across Pakistan'),
                 'heading' => __('Quality Imports, Trusted Service'),
                 'sub'     => __('B2B wholesale prices for registered business customers.'),
                 'accent'  => 'text-gold',
@@ -150,12 +150,12 @@
 
                     {{-- CTA Buttons --}}
                     <div class="mt-8 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
-                        <a href="{{ LaravelLocalization::localizeURL('/shop') }}"
+                        <a href="{{ url('/shop') }}"
                            class="inline-flex items-center gap-x-2 rounded-xl bg-gold px-6 py-3 text-sm font-bold text-white shadow-lg shadow-amber-900/30 transition-all hover:bg-gold-dark hover:-translate-y-0.5 hover:shadow-xl active:scale-95">
                             {{ __('Shop Now') }}
                             <svg class="h-4 w-4 rtl:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                         </a>
-                        <a href="{{ LaravelLocalization::localizeURL('/contact') }}"
+                        <a href="{{ url('/contact') }}"
                            class="inline-flex items-center gap-x-2 rounded-xl border-2 border-white/30 px-6 py-3 text-sm font-semibold text-white backdrop-blur-sm transition-all hover:border-white hover:bg-white/10 active:scale-95">
                             {{ __('Get Bulk Quote') }}
                         </a>
@@ -386,7 +386,7 @@
 
         <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
             @foreach($categories as $cat)
-                <a href="{{ LaravelLocalization::localizeURL('/shop/' . $cat['slug']) }}"
+                <a href="{{ url('/shop/' . $cat['slug']) }}"
                    class="group flex flex-col items-center gap-y-3 rounded-2xl border-2 border-transparent {{ $cat['bg'] }} {{ $cat['hover'] }} p-5 sm:p-6 text-center transition-all duration-200 hover:-translate-y-1.5 hover:shadow-md">
                     <div class="flex h-14 w-14 items-center justify-center rounded-2xl {{ $cat['icon_bg'] }} transition-all duration-200">
                         <svg class="h-7 w-7 {{ $cat['icon_color'] }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -407,7 +407,7 @@
 
         {{-- Browse All Link --}}
         <div class="mt-8 text-center">
-            <a href="{{ LaravelLocalization::localizeURL('/shop') }}"
+            <a href="{{ url('/shop') }}"
                class="inline-flex items-center gap-x-1.5 text-sm font-semibold text-primary hover:text-gold transition-colors group">
                 {{ __('Browse all 6 categories') }}
                 <svg class="h-4 w-4 rtl:rotate-180 transition-transform group-hover:translate-x-1 rtl:group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -435,7 +435,7 @@
                 <h2 class="text-2xl font-bold text-gray-900 sm:text-3xl">{{ __('Featured Products') }}</h2>
                 <div class="mt-3 h-1 w-12 rounded-full bg-gold sm:mx-0 mx-auto"></div>
             </div>
-            <a href="{{ LaravelLocalization::localizeURL('/shop') }}"
+            <a href="{{ url('/shop') }}"
                class="inline-flex items-center gap-x-1.5 rounded-xl border border-primary/20 bg-primary/5 px-4 py-2 text-sm font-semibold text-primary transition hover:bg-primary hover:text-white group">
                 {{ __('View All Products') }}
                 <svg class="h-4 w-4 rtl:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -540,7 +540,7 @@
 
         {{-- View All CTA --}}
         <div class="mt-12 text-center">
-            <a href="{{ LaravelLocalization::localizeURL('/shop') }}"
+            <a href="{{ url('/shop') }}"
                class="inline-flex items-center gap-x-2 rounded-2xl border-2 border-primary px-10 py-3.5 text-sm font-bold text-primary transition-all hover:bg-primary hover:text-white hover:shadow-lg hover:-translate-y-0.5 active:scale-95">
                 {{ __('View All Products') }}
                 <svg class="h-4 w-4 rtl:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -683,7 +683,7 @@
 
             {{-- Right: CTA --}}
             <div class="flex flex-col items-center gap-y-3 shrink-0">
-                <a href="{{ LaravelLocalization::localizeURL('/register') }}"
+                <a href="{{ url('/register') }}"
                    class="inline-flex items-center gap-x-2.5 rounded-2xl bg-gold px-8 py-4 text-base font-extrabold text-white shadow-2xl shadow-amber-900/30 transition-all hover:bg-gold-dark hover:-translate-y-0.5 hover:shadow-xl active:scale-95">
                     {{ __('Register as B2B Customer') }}
                     <svg class="h-5 w-5 rtl:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -691,7 +691,7 @@
                     </svg>
                 </a>
                 <p class="text-xs text-blue-300">
-                    {{ __('Free registration') }} · {{ __('No hidden charges') }}
+                    {{ __('Free registration') }} Â· {{ __('No hidden charges') }}
                 </p>
                 <div class="flex items-center gap-x-1.5">
                     @for($i = 0; $i < 3; $i++)
@@ -792,3 +792,5 @@
 </section>
 
 @endsection
+
+

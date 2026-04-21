@@ -1,7 +1,7 @@
-@extends('layouts.app')
+﻿@extends('layouts.storefront')
 
 @section('title', __('About Us'))
-@section('description', __('Learn about Shahid Brothers — Pakistan\'s trusted source for quality promotional gifts and branded items imported directly from China.'))
+@section('description', __('Learn about Shahid Brothers - Pakistan\'s trusted source for quality promotional gifts and branded items imported directly from China.'))
 
 @section('content')
 
@@ -11,7 +11,7 @@
 <div class="bg-white border-b border-gray-100">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <nav class="flex items-center gap-x-2 py-3.5 text-sm">
-            <a href="{{ LaravelLocalization::localizeURL('/') }}"
+            <a href="{{ url('/') }}"
                class="text-gray-500 hover:text-primary transition-colors">
                 {{ __('Home') }}
             </a>
@@ -58,14 +58,14 @@
                 </p>
 
                 <div class="mt-8 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
-                    <a href="{{ LaravelLocalization::localizeURL('/shop') }}"
+                    <a href="{{ url('/shop') }}"
                        class="inline-flex items-center gap-x-2 rounded-xl bg-gold px-6 py-3 text-sm font-bold text-white shadow-lg transition-all hover:bg-gold-dark hover:-translate-y-0.5 active:scale-95">
                         {{ __('Browse Our Products') }}
                         <svg class="h-4 w-4 rtl:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                         </svg>
                     </a>
-                    <a href="{{ LaravelLocalization::localizeURL('/contact') }}"
+                    <a href="{{ url('/contact') }}"
                        class="inline-flex items-center gap-x-2 rounded-xl border-2 border-white/30 px-6 py-3 text-sm font-semibold text-white transition-all hover:border-white hover:bg-white/10 active:scale-95">
                         {{ __('Contact Us') }}
                     </a>
@@ -126,7 +126,7 @@
                     @php
                         $timeline = [
                             ['year' => '2019', 'title' => __('Founded in Lahore'),           'desc' => __('Started as a small trading business at Anarkali Bazar, Lahore with a vision to bring quality promotional items to Pakistan.'), 'color' => 'bg-primary'],
-                            ['year' => '2020', 'title' => __('First China Import'),           'desc' => __('Established direct supply chain from Yiwu, China — bringing cost savings directly to our customers.'), 'color' => 'bg-gold'],
+                            ['year' => '2020', 'title' => __('First China Import'),           'desc' => __('Established direct supply chain from Yiwu, China - bringing cost savings directly to our customers.'), 'color' => 'bg-gold'],
                             ['year' => '2022', 'title' => __('B2B Expansion'),                'desc' => __('Launched dedicated B2B services for corporate clients, offering bulk pricing and custom logo printing.'), 'color' => 'bg-green-600'],
                             ['year' => '2024', 'title' => __('Serving 25+ Cities'),           'desc' => __('Expanded delivery network to cover all major cities across Pakistan including Karachi, Lahore, Islamabad and more.'), 'color' => 'bg-purple-600'],
                             ['year' => '2025', 'title' => __('Going Digital'),                'desc' => __('Launched our professional e-commerce website to serve customers 24/7 with seamless online ordering.'), 'color' => 'bg-amber-500'],
@@ -171,7 +171,7 @@
                         {{ __('Shahid Brothers is a Lahore-based trading company specializing in high-quality promotional gifts and branded merchandise. We import directly from China, cutting out the middlemen to offer you the best prices without compromising on quality.') }}
                     </p>
                     <p>
-                        {{ __('Our product range covers everything a business needs for branding — from custom keychains and pens to power banks, USB drives, bottles, tumblers, and wall clocks. Every item can be personalized with your company logo and colors.') }}
+                        {{ __('Our product range covers everything a business needs for branding - from custom keychains and pens to power banks, USB drives, bottles, tumblers, and wall clocks. Every item can be personalized with your company logo and colors.') }}
                     </p>
                     <p>
                         {{ __('We serve both individual buyers (B2C) and businesses (B2B). Corporate clients enjoy special wholesale pricing, dedicated account support, and priority order processing.') }}
@@ -268,7 +268,7 @@
                         {{ __('Pakistan\'s #1 Gifts Platform') }}
                     </h3>
                     <p class="mt-4 text-sm leading-relaxed text-amber-100">
-                        {{ __('To become Pakistan\'s most trusted online marketplace for promotional gifts — empowering businesses of all sizes with smart branding solutions at the best prices.') }}
+                        {{ __('To become Pakistan\'s most trusted online marketplace for promotional gifts - empowering businesses of all sizes with smart branding solutions at the best prices.') }}
                     </p>
                     <ul class="mt-6 space-y-2">
                         @foreach([__('Expand to 100+ cities by 2026'), __('Launch AI-powered product customization'), __('Serve 2000+ businesses across Pakistan')] as $point)
@@ -371,9 +371,7 @@
                 </div>
 
                 <div class="mt-8 flex items-center gap-x-4 rounded-xl bg-primary/5 border border-primary/10 p-4">
-                    <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary text-xl font-black text-white shadow-md">
-                        🇨🇳
-                    </div>
+                    <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary text-sm font-black text-white shadow-md">CN</div>
                     <div>
                         <div class="text-sm font-bold text-gray-900">{{ __('Sourced from Yiwu & Guangzhou') }}</div>
                         <div class="mt-0.5 text-xs text-gray-600">{{ __('The world\'s largest wholesale markets for promotional products.') }}</div>
@@ -387,10 +385,10 @@
                 @php
                     $steps = [
                         ['num' => '01', 'title' => __('Product Selection'),   'desc' => __('We handpick products that meet Pakistani market needs and quality standards.'),     'color' => 'bg-primary text-white'],
-                        ['num' => '02', 'title' => __('Factory Inspection'),  'desc' => __('Quality check at the source — we verify factory standards before ordering.'),      'color' => 'bg-gold text-white'],
-                        ['num' => '03', 'title' => __('Bulk Shipment'),       'desc' => __('Sea freight from China to Pakistan — cost-effective for large quantities.'),         'color' => 'bg-green-600 text-white'],
+                        ['num' => '02', 'title' => __('Factory Inspection'),  'desc' => __('Quality check at the source - we verify factory standards before ordering.'),      'color' => 'bg-gold text-white'],
+                        ['num' => '03', 'title' => __('Bulk Shipment'),       'desc' => __('Sea freight from China to Pakistan - cost-effective for large quantities.'),         'color' => 'bg-green-600 text-white'],
                         ['num' => '04', 'title' => __('Quality Control'),     'desc' => __('Every batch is inspected at our Lahore warehouse before dispatch.'),                'color' => 'bg-purple-600 text-white'],
-                        ['num' => '05', 'title' => __('Delivered to You'),    'desc' => __('Nationwide delivery via trusted courier partners within 2–5 business days.'),       'color' => 'bg-amber-500 text-white'],
+                        ['num' => '05', 'title' => __('Delivered to You'),    'desc' => __('Nationwide delivery via trusted courier partners within 2"5 business days.'),       'color' => 'bg-amber-500 text-white'],
                     ];
                 @endphp
                 <div class="space-y-0">
@@ -429,15 +427,37 @@
             <div class="flex flex-wrap items-center justify-center gap-4 sm:justify-end">
                 @php
                     $payments = [
-                        ['name' => 'JazzCash',    'color' => 'bg-red-50 border-red-200',    'text' => 'text-red-700',    'icon' => '📱'],
-                        ['name' => 'EasyPaisa',   'color' => 'bg-green-50 border-green-200','text' => 'text-green-700',  'icon' => '💳'],
-                        ['name' => 'Cash on Delivery', 'color' => 'bg-amber-50 border-amber-200', 'text' => 'text-amber-700', 'icon' => '💵'],
-                        ['name' => 'Bank Transfer', 'color' => 'bg-blue-50 border-blue-200', 'text' => 'text-blue-700',  'icon' => '🏦'],
+                        [
+                            'name'  => 'JazzCash',
+                            'color' => 'bg-red-50 border-red-200',
+                            'text'  => 'text-red-700',
+                            'svg'   => 'M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z',
+                        ],
+                        [
+                            'name'  => 'EasyPaisa',
+                            'color' => 'bg-green-50 border-green-200',
+                            'text'  => 'text-green-700',
+                            'svg'   => 'M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z',
+                        ],
+                        [
+                            'name'  => 'Cash on Delivery',
+                            'color' => 'bg-amber-50 border-amber-200',
+                            'text'  => 'text-amber-700',
+                            'svg'   => 'M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z',
+                        ],
+                        [
+                            'name'  => 'Bank Transfer',
+                            'color' => 'bg-blue-50 border-blue-200',
+                            'text'  => 'text-blue-700',
+                            'svg'   => 'M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z',
+                        ],
                     ];
                 @endphp
                 @foreach($payments as $pm)
                     <div class="flex items-center gap-x-2 rounded-xl border {{ $pm['color'] }} px-4 py-2.5 shadow-sm">
-                        <span class="text-lg leading-none">{{ $pm['icon'] }}</span>
+                        <svg class="h-5 w-5 {{ $pm['text'] }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="{{ $pm['svg'] }}"/>
+                        </svg>
                         <span class="text-sm font-bold {{ $pm['text'] }}">{{ $pm['name'] }}</span>
                     </div>
                 @endforeach
@@ -462,14 +482,14 @@
             {{ __('Browse our collection or reach out for a custom bulk quote. We\'re here to help!') }}
         </p>
         <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
-            <a href="{{ LaravelLocalization::localizeURL('/shop') }}"
+            <a href="{{ url('/shop') }}"
                class="inline-flex items-center gap-x-2 rounded-2xl bg-gold px-8 py-3.5 text-sm font-extrabold text-white shadow-2xl shadow-amber-900/30 transition-all hover:bg-gold-dark hover:-translate-y-0.5 active:scale-95">
                 {{ __('Shop Now') }}
                 <svg class="h-4 w-4 rtl:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                 </svg>
             </a>
-            <a href="{{ LaravelLocalization::localizeURL('/contact') }}"
+            <a href="{{ url('/contact') }}"
                class="inline-flex items-center gap-x-2 rounded-2xl border-2 border-white/30 px-8 py-3.5 text-sm font-semibold text-white transition-all hover:border-white hover:bg-white/10 active:scale-95">
                 {{ __('Get in Touch') }}
             </a>
@@ -478,3 +498,5 @@
 </section>
 
 @endsection
+
+
