@@ -320,96 +320,46 @@
 
         {{-- Category Grid --}}
         @php
-            $categories = [
-                [
-                    'name'  => __('Keychains'),
-                    'slug'  => 'keychains',
-                    'count' => '12',
-                    'bg'    => 'bg-amber-50',
-                    'hover' => 'hover:bg-amber-100 hover:border-amber-300',
-                    'icon_bg' => 'bg-amber-100 group-hover:bg-amber-200',
-                    'icon_color' => 'text-amber-600',
-                    'icon'  => 'M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z',
-                ],
-                [
-                    'name'  => __('Pens'),
-                    'slug'  => 'pens',
-                    'count' => '8',
-                    'bg'    => 'bg-blue-50',
-                    'hover' => 'hover:bg-blue-100 hover:border-blue-300',
-                    'icon_bg' => 'bg-blue-100 group-hover:bg-blue-200',
-                    'icon_color' => 'text-blue-600',
-                    'icon'  => 'M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z',
-                ],
-                [
-                    'name'  => __('Power Banks'),
-                    'slug'  => 'power-banks',
-                    'count' => '6',
-                    'bg'    => 'bg-green-50',
-                    'hover' => 'hover:bg-green-100 hover:border-green-300',
-                    'icon_bg' => 'bg-green-100 group-hover:bg-green-200',
-                    'icon_color' => 'text-green-600',
-                    'icon'  => 'M13 10V3L4 14h7v7l9-11h-7z',
-                ],
-                [
-                    'name'  => __('USB Drives'),
-                    'slug'  => 'usb-drives',
-                    'count' => '5',
-                    'bg'    => 'bg-purple-50',
-                    'hover' => 'hover:bg-purple-100 hover:border-purple-300',
-                    'icon_bg' => 'bg-purple-100 group-hover:bg-purple-200',
-                    'icon_color' => 'text-purple-600',
-                    'icon'  => 'M9 3v10m3-7l-3 3-3-3m9 4a3 3 0 11-6 0 3 3 0 016 0z M5 20h14',
-                ],
-                [
-                    'name'  => __('Bottles & Tumblers'),
-                    'slug'  => 'bottles-tumblers',
-                    'count' => '10',
-                    'bg'    => 'bg-cyan-50',
-                    'hover' => 'hover:bg-cyan-100 hover:border-cyan-300',
-                    'icon_bg' => 'bg-cyan-100 group-hover:bg-cyan-200',
-                    'icon_color' => 'text-cyan-600',
-                    'icon'  => 'M9 3h6l1 3H8L9 3zM8 6v14a1 1 0 001 1h6a1 1 0 001-1V6H8z M8 10h8',
-                ],
-                [
-                    'name'  => __('Clocks'),
-                    'slug'  => 'clocks',
-                    'count' => '7',
-                    'bg'    => 'bg-rose-50',
-                    'hover' => 'hover:bg-rose-100 hover:border-rose-300',
-                    'icon_bg' => 'bg-rose-100 group-hover:bg-rose-200',
-                    'icon_color' => 'text-rose-600',
-                    'icon'  => 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z',
-                ],
+            $catStyles = [
+                'keychains'        => ['bg' => 'bg-amber-50',  'hover' => 'hover:bg-amber-100 hover:border-amber-300',  'icon_bg' => 'bg-amber-100 group-hover:bg-amber-200',  'icon_color' => 'text-amber-600',  'icon' => 'M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z'],
+                'pens'             => ['bg' => 'bg-blue-50',   'hover' => 'hover:bg-blue-100 hover:border-blue-300',    'icon_bg' => 'bg-blue-100 group-hover:bg-blue-200',    'icon_color' => 'text-blue-600',   'icon' => 'M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z'],
+                'power-banks'      => ['bg' => 'bg-green-50',  'hover' => 'hover:bg-green-100 hover:border-green-300',  'icon_bg' => 'bg-green-100 group-hover:bg-green-200',  'icon_color' => 'text-green-600',  'icon' => 'M13 10V3L4 14h7v7l9-11h-7z'],
+                'usb-drives'       => ['bg' => 'bg-purple-50', 'hover' => 'hover:bg-purple-100 hover:border-purple-300','icon_bg' => 'bg-purple-100 group-hover:bg-purple-200', 'icon_color' => 'text-purple-600', 'icon' => 'M9 3v10m3-7l-3 3-3-3m9 4a3 3 0 11-6 0 3 3 0 016 0z M5 20h14'],
+                'bottles-tumblers' => ['bg' => 'bg-cyan-50',   'hover' => 'hover:bg-cyan-100 hover:border-cyan-300',    'icon_bg' => 'bg-cyan-100 group-hover:bg-cyan-200',    'icon_color' => 'text-cyan-600',   'icon' => 'M9 3h6l1 3H8L9 3zM8 6v14a1 1 0 001 1h6a1 1 0 001-1V6H8z M8 10h8'],
+                'clocks'           => ['bg' => 'bg-rose-50',   'hover' => 'hover:bg-rose-100 hover:border-rose-300',    'icon_bg' => 'bg-rose-100 group-hover:bg-rose-200',    'icon_color' => 'text-rose-600',   'icon' => 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z'],
             ];
+            $defaultCatStyle = ['bg' => 'bg-gray-50', 'hover' => 'hover:bg-gray-100 hover:border-gray-300', 'icon_bg' => 'bg-gray-100 group-hover:bg-gray-200', 'icon_color' => 'text-gray-600', 'icon' => 'M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4'];
         @endphp
 
         <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
-            @foreach($categories as $cat)
-                <a href="{{ url('/shop/' . $cat['slug']) }}"
-                   class="group flex flex-col items-center gap-y-3 rounded-2xl border-2 border-transparent {{ $cat['bg'] }} {{ $cat['hover'] }} p-5 sm:p-6 text-center transition-all duration-200 hover:-translate-y-1.5 hover:shadow-md">
-                    <div class="flex h-14 w-14 items-center justify-center rounded-2xl {{ $cat['icon_bg'] }} transition-all duration-200">
-                        <svg class="h-7 w-7 {{ $cat['icon_color'] }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="{{ $cat['icon'] }}"/>
+            @forelse($categories as $cat)
+                @php $style = $catStyles[$cat->slug] ?? $defaultCatStyle; @endphp
+                <a href="{{ route('shop') }}?category={{ $cat->slug }}"
+                   class="group flex flex-col items-center gap-y-3 rounded-2xl border-2 border-transparent {{ $style['bg'] }} {{ $style['hover'] }} p-5 sm:p-6 text-center transition-all duration-200 hover:-translate-y-1.5 hover:shadow-md">
+                    <div class="flex h-14 w-14 items-center justify-center rounded-2xl {{ $style['icon_bg'] }} transition-all duration-200">
+                        <svg class="h-7 w-7 {{ $style['icon_color'] }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="{{ $style['icon'] }}"/>
                         </svg>
                     </div>
                     <div>
                         <span class="block text-sm font-bold text-gray-800 group-hover:text-primary transition-colors leading-tight">
-                            {{ $cat['name'] }}
+                            {{ $cat->name }}
                         </span>
                         <span class="mt-0.5 block text-xs text-gray-500">
-                            {{ $cat['count'] }} {{ __('items') }}
+                            {{ $cat->products_count }} {{ __('items') }}
                         </span>
                     </div>
                 </a>
-            @endforeach
+            @empty
+                <p class="col-span-full text-center text-sm text-gray-400">{{ __('No categories available yet.') }}</p>
+            @endforelse
         </div>
 
         {{-- Browse All Link --}}
         <div class="mt-8 text-center">
-            <a href="{{ url('/shop') }}"
+            <a href="{{ route('shop') }}"
                class="inline-flex items-center gap-x-1.5 text-sm font-semibold text-primary hover:text-gold transition-colors group">
-                {{ __('Browse all 6 categories') }}
+                {{ __('Browse all') }} {{ $categories->count() }} {{ __('categories') }}
                 <svg class="h-4 w-4 rtl:rotate-180 transition-transform group-hover:translate-x-1 rtl:group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                 </svg>
@@ -445,45 +395,52 @@
         </div>
 
         {{-- Products Grid --}}
-        {{-- TODO: Replace with real $featuredProducts from controller --}}
         @php
-            $placeholderProducts = [
-                ['name' => 'Premium Metal Keychain',   'price' => 450,  'b2b_price' => 320,  'category' => __('Keychains'),        'badge' => __('Best Seller'), 'badge_color' => 'bg-gold',              'icon_bg' => 'from-amber-50 to-amber-100',   'icon_color' => 'text-amber-500',  'icon' => 'M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z'],
-                ['name' => 'Executive Ballpoint Pen',  'price' => 180,  'b2b_price' => 120,  'category' => __('Pens'),             'badge' => __('New'),         'badge_color' => 'bg-green-500',         'icon_bg' => 'from-blue-50 to-blue-100',     'icon_color' => 'text-blue-500',   'icon' => 'M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z'],
-                ['name' => '10000mAh Power Bank',      'price' => 1800, 'b2b_price' => 1400, 'category' => __('Power Banks'),      'badge' => __('Best Seller'), 'badge_color' => 'bg-gold',              'icon_bg' => 'from-green-50 to-green-100',   'icon_color' => 'text-green-500',  'icon' => 'M13 10V3L4 14h7v7l9-11h-7z'],
-                ['name' => '32GB Metal USB Drive',     'price' => 950,  'b2b_price' => 720,  'category' => __('USB Drives'),       'badge' => __('Popular'),     'badge_color' => 'bg-purple-500',        'icon_bg' => 'from-purple-50 to-purple-100', 'icon_color' => 'text-purple-500', 'icon' => 'M9 3v10m3-7l-3 3-3-3m9 4a3 3 0 11-6 0 3 3 0 016 0z M5 20h14'],
-                ['name' => 'Stainless Steel Tumbler',  'price' => 1200, 'b2b_price' => 950,  'category' => __('Bottles & Tumblers'),'badge' => __('New'),         'badge_color' => 'bg-cyan-500',          'icon_bg' => 'from-cyan-50 to-cyan-100',     'icon_color' => 'text-cyan-500',   'icon' => 'M9 3h6l1 3H8L9 3zM8 6v14a1 1 0 001 1h6a1 1 0 001-1V6H8z M8 10h8'],
-                ['name' => 'Copper Metal Keyring',     'price' => 380,  'b2b_price' => 270,  'category' => __('Keychains'),        'badge' => null,              'badge_color' => '',                     'icon_bg' => 'from-orange-50 to-orange-100', 'icon_color' => 'text-orange-500', 'icon' => 'M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z'],
-                ['name' => 'Slim USB-C Power Bank',    'price' => 2200, 'b2b_price' => 1750, 'category' => __('Power Banks'),      'badge' => __('Popular'),     'badge_color' => 'bg-emerald-500',       'icon_bg' => 'from-emerald-50 to-emerald-100','icon_color' => 'text-emerald-500','icon' => 'M13 10V3L4 14h7v7l9-11h-7z'],
-                ['name' => 'Digital Desk Clock',       'price' => 1500, 'b2b_price' => 1200, 'category' => __('Clocks'),           'badge' => null,              'badge_color' => '',                     'icon_bg' => 'from-rose-50 to-rose-100',     'icon_color' => 'text-rose-500',   'icon' => 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z'],
+            $productIconMap = [
+                'keychains'        => ['icon_bg' => 'from-amber-50 to-amber-100',    'icon_color' => 'text-amber-500',   'icon' => 'M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z'],
+                'pens'             => ['icon_bg' => 'from-blue-50 to-blue-100',       'icon_color' => 'text-blue-500',    'icon' => 'M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z'],
+                'power-banks'      => ['icon_bg' => 'from-green-50 to-green-100',     'icon_color' => 'text-green-500',   'icon' => 'M13 10V3L4 14h7v7l9-11h-7z'],
+                'usb-drives'       => ['icon_bg' => 'from-purple-50 to-purple-100',   'icon_color' => 'text-purple-500',  'icon' => 'M9 3v10m3-7l-3 3-3-3m9 4a3 3 0 11-6 0 3 3 0 016 0z M5 20h14'],
+                'bottles-tumblers' => ['icon_bg' => 'from-cyan-50 to-cyan-100',       'icon_color' => 'text-cyan-500',    'icon' => 'M9 3h6l1 3H8L9 3zM8 6v14a1 1 0 001 1h6a1 1 0 001-1V6H8z M8 10h8'],
+                'clocks'           => ['icon_bg' => 'from-rose-50 to-rose-100',       'icon_color' => 'text-rose-500',    'icon' => 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z'],
             ];
+            $defaultProductStyle = ['icon_bg' => 'from-gray-50 to-gray-100', 'icon_color' => 'text-gray-400', 'icon' => 'M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z'];
         @endphp
 
         <div class="grid grid-cols-2 gap-4 sm:gap-5 md:grid-cols-3 lg:grid-cols-4">
-            @foreach($placeholderProducts as $product)
+            @forelse($featuredProducts as $product)
+                @php
+                    $pStyle   = $productIconMap[$product->category->slug] ?? $defaultProductStyle;
+                    $hasImage = $product->hasMedia('images');
+                @endphp
                 <div class="group relative flex flex-col rounded-2xl bg-white shadow-sm ring-1 ring-gray-100 hover:shadow-xl hover:ring-primary/20 transition-all duration-300 hover:-translate-y-1.5 overflow-hidden">
 
                     {{-- Product Image Area --}}
-                    <div class="relative overflow-hidden bg-gradient-to-br {{ $product['icon_bg'] }} aspect-square flex items-center justify-center">
-                        <svg class="h-16 w-16 sm:h-20 sm:w-20 {{ $product['icon_color'] }} opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="{{ $product['icon'] }}"/>
-                        </svg>
+                    <div class="relative overflow-hidden aspect-square flex items-center justify-center {{ $hasImage ? 'bg-gray-100' : 'bg-gradient-to-br ' . $pStyle['icon_bg'] }}">
+                        @if($hasImage)
+                            <img src="{{ $product->getFirstMediaUrl('images', 'card') }}"
+                                 alt="{{ $product->name }}"
+                                 loading="lazy"
+                                 class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105">
+                        @else
+                            <svg class="h-16 w-16 sm:h-20 sm:w-20 {{ $pStyle['icon_color'] }} opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="{{ $pStyle['icon'] }}"/>
+                            </svg>
+                        @endif
 
                         {{-- Top badges row --}}
                         <div class="absolute inset-x-0 top-0 flex items-start justify-between p-2.5">
-                            {{-- Category --}}
                             <span class="rounded-md bg-white/80 backdrop-blur-sm px-2 py-0.5 text-xs font-semibold text-gray-700 shadow-sm">
-                                {{ $product['category'] }}
+                                {{ $product->category->name }}
                             </span>
-                            {{-- Optional badge --}}
-                            @if($product['badge'])
-                                <span class="rounded-md {{ $product['badge_color'] }} px-2 py-0.5 text-xs font-bold text-white shadow-sm">
-                                    {{ $product['badge'] }}
+                            @if($product->is_featured)
+                                <span class="rounded-md bg-gold px-2 py-0.5 text-xs font-bold text-white shadow-sm">
+                                    {{ __('Featured') }}
                                 </span>
                             @endif
                         </div>
 
-                        {{-- Hover overlay with Add to Cart --}}
+                        {{-- Hover overlay --}}
                         <div class="absolute inset-0 flex items-center justify-center bg-primary/60 opacity-0 group-hover:opacity-100 transition-opacity duration-200 backdrop-blur-[2px]">
                             <div class="flex gap-x-2">
                                 <button class="flex h-10 w-10 items-center justify-center rounded-full bg-white text-primary shadow-lg transition hover:bg-gold hover:text-white active:scale-95"
@@ -492,9 +449,9 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
                                     </svg>
                                 </button>
-                                <a href="#"
+                                <a href="{{ route('products.show', $product->slug) }}"
                                    class="flex h-10 w-10 items-center justify-center rounded-full bg-white text-primary shadow-lg transition hover:bg-primary hover:text-white active:scale-95"
-                                   title="{{ __('Quick View') }}">
+                                   title="{{ __('View Details') }}">
                                     <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
                                     </svg>
@@ -505,37 +462,48 @@
 
                     {{-- Product Info --}}
                     <div class="flex flex-1 flex-col p-3.5 sm:p-4">
-                        {{-- Name --}}
                         <h3 class="text-sm font-semibold text-gray-800 line-clamp-2 leading-snug group-hover:text-primary transition-colors flex-1">
-                            {{ $product['name'] }}
+                            {{ $product->name }}
                         </h3>
 
                         {{-- Prices --}}
                         <div class="mt-2.5 space-y-1">
                             <div class="text-base font-extrabold text-primary">
-                                {{ __('Rs.') }} {{ number_format($product['price'], 0) }}
+                                {{ $product->getFormattedPrice() }}
                             </div>
-                            <div class="text-xs text-gray-500">
-                                <span class="font-semibold text-gold-dark">{{ __('B2B Price') }}:</span>
-                                {{ __('Rs.') }} {{ number_format($product['b2b_price'], 0) }}
-                                <span class="text-gray-400">/ {{ __('per piece (bulk)') }}</span>
-                            </div>
+                            @if($product->b2b_price)
+                                <div class="text-xs text-gray-500">
+                                    <span class="font-semibold text-gold-dark">{{ __('B2B') }}:</span>
+                                    {{ $product->getFormattedB2bPrice() }}
+                                    <span class="text-gray-400">/ {{ __('bulk') }}</span>
+                                </div>
+                            @endif
                         </div>
 
-                        {{-- In Stock indicator --}}
+                        {{-- Stock indicator --}}
                         <div class="mt-2 flex items-center gap-x-1.5">
-                            <span class="inline-block h-1.5 w-1.5 rounded-full bg-green-500"></span>
-                            <span class="text-xs text-gray-500">{{ __('In Stock') }}</span>
+                            @if($product->isInStock())
+                                <span class="inline-block h-1.5 w-1.5 rounded-full bg-green-500"></span>
+                                <span class="text-xs text-gray-500">{{ __('In Stock') }}</span>
+                            @else
+                                <span class="inline-block h-1.5 w-1.5 rounded-full bg-red-400"></span>
+                                <span class="text-xs text-gray-500">{{ __('Out of Stock') }}</span>
+                            @endif
                         </div>
 
-                        {{-- Add to Cart Button --}}
-                        <button class="mt-3 w-full rounded-xl bg-primary py-2.5 text-xs font-bold text-white transition-all hover:bg-primary-dark active:scale-95 group-hover:bg-gold group-hover:shadow-md">
-                            {{ __('Add to Cart') }}
-                        </button>
+                        {{-- View Details Button --}}
+                        <a href="{{ route('products.show', $product->slug) }}"
+                           class="mt-3 block w-full rounded-xl bg-primary py-2.5 text-center text-xs font-bold text-white transition-all hover:bg-primary-dark active:scale-95 group-hover:bg-gold group-hover:shadow-md">
+                            {{ __('View Details') }}
+                        </a>
                     </div>
 
                 </div>
-            @endforeach
+            @empty
+                <div class="col-span-full py-12 text-center">
+                    <p class="text-gray-400">{{ __('No featured products available yet.') }}</p>
+                </div>
+            @endforelse
         </div>
 
         {{-- View All CTA --}}

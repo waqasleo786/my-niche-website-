@@ -1,0 +1,21 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Listeners;
+
+use App\Models\User;
+use App\Services\CartService;
+use Illuminate\Auth\Events\Login;
+
+class MergeCartOnLogin
+{
+    public function __construct(private readonly CartService $cartService) {}
+
+    public function handle(Login $event): void
+    {
+        if ($event->user instanceof User) {
+            $this->cartService->mergeGuestCartToUser($event->user);
+        }
+    }
+}
