@@ -26,7 +26,7 @@ class CheckoutRequest extends FormRequest
             'shipping_city'     => ['required', 'string', 'max:100'],
             'shipping_area'     => ['required', 'string', 'max:150'],
             'shipping_address'  => ['required', 'string', 'max:255'],
-            'payment_method'    => ['required', Rule::in([PaymentMethod::COD->value])],
+            'payment_method'    => ['required', Rule::in(PaymentMethod::values())],
             'notes'             => ['nullable', 'string', 'max:500'],
         ];
     }

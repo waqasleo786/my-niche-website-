@@ -195,27 +195,41 @@
                             </div>
                         </label>
 
-                        {{-- Coming Soon: JazzCash --}}
-                        <div class="flex items-center gap-4 rounded-lg border border-gray-100 bg-gray-50 p-4 opacity-60 cursor-not-allowed">
-                            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-red-100">
-                                <span class="text-xs font-bold text-red-600">JC</span>
+                        {{-- JazzCash --}}
+                        <label class="flex cursor-pointer items-center gap-4 rounded-lg border border-gray-200 p-4 hover:border-primary hover:bg-blue-50/30 transition-colors has-[:checked]:border-primary has-[:checked]:bg-blue-50/40">
+                            <input type="radio"
+                                   name="payment_method"
+                                   value="jazzcash"
+                                   {{ old('payment_method') === 'jazzcash' ? 'checked' : '' }}
+                                   class="h-4 w-4 text-primary border-gray-300 focus:ring-primary">
+                            <div class="flex items-center gap-3">
+                                <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-red-100">
+                                    <span class="text-xs font-bold text-red-600">JC</span>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-semibold text-gray-900">JazzCash</p>
+                                    <p class="text-xs text-gray-500">{{ __('Pay via JazzCash mobile wallet') }}</p>
+                                </div>
                             </div>
-                            <div>
-                                <p class="text-sm font-semibold text-gray-700">JazzCash</p>
-                                <p class="text-xs text-gray-400">{{ __('Coming soon') }}</p>
-                            </div>
-                        </div>
+                        </label>
 
-                        {{-- Coming Soon: EasyPaisa --}}
-                        <div class="flex items-center gap-4 rounded-lg border border-gray-100 bg-gray-50 p-4 opacity-60 cursor-not-allowed">
-                            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-emerald-100">
-                                <span class="text-xs font-bold text-emerald-600">EP</span>
+                        {{-- EasyPaisa --}}
+                        <label class="flex cursor-pointer items-center gap-4 rounded-lg border border-gray-200 p-4 hover:border-primary hover:bg-blue-50/30 transition-colors has-[:checked]:border-primary has-[:checked]:bg-blue-50/40">
+                            <input type="radio"
+                                   name="payment_method"
+                                   value="easypaisa"
+                                   {{ old('payment_method') === 'easypaisa' ? 'checked' : '' }}
+                                   class="h-4 w-4 text-primary border-gray-300 focus:ring-primary">
+                            <div class="flex items-center gap-3">
+                                <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-emerald-100">
+                                    <span class="text-xs font-bold text-emerald-600">EP</span>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-semibold text-gray-900">EasyPaisa</p>
+                                    <p class="text-xs text-gray-500">{{ __('Pay via EasyPaisa mobile wallet') }}</p>
+                                </div>
                             </div>
-                            <div>
-                                <p class="text-sm font-semibold text-gray-700">EasyPaisa</p>
-                                <p class="text-xs text-gray-400">{{ __('Coming soon') }}</p>
-                            </div>
-                        </div>
+                        </label>
 
                     </div>
 

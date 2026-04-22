@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "162ff1fda8137ac92a34d4411d59ff33",
+    "content-hash": "f89f3f9c4615fbc1fa375857c1784e75",
     "packages": [
         {
             "name": "blade-ui-kit/blade-heroicons",
@@ -8875,6 +8875,114 @@
                 }
             ],
             "time": "2026-04-16T23:10:39+00:00"
+        },
+        {
+            "name": "zfhassaan/easypaisa",
+            "version": "v1.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zfhassaan/easypaisa.git",
+                "reference": "b5ef918163643fdb4f0585f6180cd4813bd53184"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zfhassaan/easypaisa/zipball/b5ef918163643fdb4f0585f6180cd4813bd53184",
+                "reference": "b5ef918163643fdb4f0585f6180cd4813bd53184",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^7.7",
+                "php": "^8.1"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": {
+                        "easypaisa": "Zfhassaan\\Easypaisa\\Facade\\EasypaisaFacade"
+                    },
+                    "providers": [
+                        "Zfhassaan\\Easypaisa\\EasyPaisaServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Zfhassaan\\Easypaisa\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Hassaan Ali",
+                    "email": "zfhassaan@gmail.com"
+                }
+            ],
+            "description": "Unlock the power of EasyPaisa Payment Gateway in Laravel 9 and Laravel 10. Accept payments seamlessly and securely, empowering your business to thrive in the digital era. Experience hassle-free integration and provide a seamless checkout experience for your customers.",
+            "support": {
+                "issues": "https://github.com/zfhassaan/easypaisa/issues",
+                "source": "https://github.com/zfhassaan/easypaisa/tree/v1.0.5"
+            },
+            "time": "2023-05-31T09:29:41+00:00"
+        },
+        {
+            "name": "zfhassaan/jazzcash",
+            "version": "v1.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zfhassaan/jazzcash.git",
+                "reference": "898db0bdb42ac8759c16fa7176a36943b6ae3eb2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zfhassaan/jazzcash/zipball/898db0bdb42ac8759c16fa7176a36943b6ae3eb2",
+                "reference": "898db0bdb42ac8759c16fa7176a36943b6ae3eb2",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^7.5",
+                "illuminate/support": "^9.0|^10.0|^11.0|^12.0",
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^8.0|^9.0|^10.0",
+                "phpunit/phpunit": "^10.0|^11.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": {
+                        "jazzcash": "zfhassaan\\JazzCash\\Facade\\JazzcashFacade"
+                    },
+                    "providers": [
+                        "zfhassaan\\jazzcash\\provider\\ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "zfhassaan\\JazzCash\\": "src/",
+                    "zfhassaan\\jazzcash\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Hassaan Ali",
+                    "email": "zfhassaan@gmail.com"
+                }
+            ],
+            "description": "JazzCash Payment Gateway Package for Laravel 9",
+            "support": {
+                "issues": "https://github.com/zfhassaan/jazzcash/issues",
+                "source": "https://github.com/zfhassaan/jazzcash/tree/v1.0.6"
+            },
+            "time": "2025-12-27T15:30:51+00:00"
         }
     ],
     "packages-dev": [

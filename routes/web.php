@@ -59,3 +59,4 @@ Route::view('/profile', 'profile')
     ->name('profile');
 
 require __DIR__ . '/auth.php';
+require __DIR__ . '/payment-callbacks.php';

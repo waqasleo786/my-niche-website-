@@ -9,15 +9,18 @@ use App\Models\Order;
 use App\Models\User;
 use App\Services\CartService;
 use App\Services\OrderService;
+use App\Services\PaymentService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Symfony\Component\HttpFoundation\Response;
 
 class CheckoutController extends Controller
 {
     public function __construct(
-        private readonly CartService  $cartService,
-        private readonly OrderService $orderService,
+        private readonly CartService    $cartService,
+        private readonly OrderService   $orderService,
+        private readonly PaymentService $paymentService,
     ) {}
 
     public function index(): View|RedirectResponse
@@ -35,7 +38,7 @@ class CheckoutController extends Controller
         return view('checkout.index', compact('cart', 'locations'));
     }
 
-    public function store(CheckoutRequest $request): RedirectResponse
+    public function store(CheckoutRequest $request): Response
     {
         /** @var User $user */
         $user = Auth::user();
@@ -49,7 +52,7 @@ class CheckoutController extends Controller
 
         $order = $this->orderService->createFromCart($cart, $user, $request->validated());
 
-        return redirect()->route('checkout.confirmation', $order)->with('order_placed', true);
+        return $this->paymentService->initiate($order);
     }
 
     public function confirmation(Order $order): View|RedirectResponse
