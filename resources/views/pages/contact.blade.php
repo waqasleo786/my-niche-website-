@@ -114,7 +114,7 @@
                                 </span>
                                 <div>
                                     <p class="text-xs font-semibold uppercase tracking-wide text-gray-400">{{ __('Business Hours') }}</p>
-                                    <p class="mt-0.5 text-sm text-gray-700">{{ __('Mon - Sat') }}: 9:00 AM â€“ 7:00 PM</p>
+                                    <p class=”mt-0.5 text-sm text-gray-700”>{{ __('Mon - Sat') }}: 9:00 AM – 7:00 PM</p>
                                     <p class="text-sm text-gray-500">{{ __('Sunday') }}: {{ __('Closed') }}</p>
                                 </div>
                             </li>

@@ -26,6 +26,11 @@ Route::get('/about', function () {
 
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 
+Route::view('/terms', 'pages.terms')->name('terms');
+Route::view('/privacy', 'pages.privacy')->name('privacy');
+Route::view('/shipping', 'pages.shipping')->name('shipping');
+Route::view('/faq', 'pages.faq')->name('faq');
+
 // -------------------------------------------------------------------
 // Cart Routes (guests + auth)
 // -------------------------------------------------------------------
