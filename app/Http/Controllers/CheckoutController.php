@@ -64,7 +64,7 @@ class CheckoutController extends Controller
 
         if ($order->hasPaymentSlip()) {
             Mail::to(config('payment_accounts.admin_email'))
-                ->queue(new NewPaymentSlipAlertMail($order));
+                ->send(new NewPaymentSlipAlertMail($order));
         }
 
         return $this->paymentService->initiate($order);

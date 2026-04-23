@@ -49,7 +49,7 @@ class EditOrder extends EditRecord
                 ]);
 
                 Mail::to($this->record->user->email)
-                    ->queue(new PaymentVerifiedMail($this->record));
+                    ->send(new PaymentVerifiedMail($this->record));
 
                 Notification::make()
                     ->title('Payment verified!')
@@ -91,7 +91,7 @@ class EditOrder extends EditRecord
                 ]);
 
                 Mail::to($this->record->user->email)
-                    ->queue(new PaymentRejectedMail($this->record, $reason));
+                    ->send(new PaymentRejectedMail($this->record, $reason));
 
                 Notification::make()
                     ->title('Payment rejected')
