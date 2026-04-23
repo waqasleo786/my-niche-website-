@@ -104,7 +104,7 @@ class EditOrder extends EditRecord
                     'Assalam o Alaikum ' . $this->record->shipping_name . '! '
                     . 'Order #' . $this->record->order_number . ' ka payment slip verify nahi ho saka. '
                     . 'Wajah: ' . $reason . '. '
-                    . 'Kripya dobara clear screenshot send karein. Shukriya! — Shahid Brothers'
+                    . 'Meharbani farma kar dobara clear screenshot send karein. Shukriya! — Shahid Brothers'
                 );
 
                 $waUrl = 'https://wa.me/' . $this->waPhone() . '?text=' . $msg;
