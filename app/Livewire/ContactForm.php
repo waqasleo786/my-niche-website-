@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Livewire;
 
+use App\Models\ContactSubmission;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\RateLimiter;
 use Livewire\Attributes\Rule;
@@ -45,6 +46,15 @@ class ContactForm extends Component
 
         RateLimiter::hit($key, decaySeconds: 300);
 
+        // Save to database
+        ContactSubmission::create([
+            'name'    => $this->name,
+            'email'   => $this->email,
+            'phone'   => $this->phone ?: null,
+            'subject' => $this->subject,
+            'message' => $this->message,
+        ]);
+
         // Send notification email to admin
         Mail::raw(
             sprintf(
@@ -56,7 +66,7 @@ class ContactForm extends Component
                 $this->message
             ),
             function ($mail): void {
-                $mail->to(config('mail.from.address'))
+                $mail->to('waqasleo@gmail.com')
                     ->subject('New Contact: ' . $this->subject);
             }
         );
