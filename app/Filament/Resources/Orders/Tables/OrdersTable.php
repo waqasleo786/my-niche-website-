@@ -12,6 +12,7 @@ use Filament\Actions\EditAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
 
 class OrdersTable
@@ -49,6 +50,15 @@ class OrdersTable
                     ->color(fn (PaymentStatus $state): string => $state->color())
                     ->sortable(),
 
+                IconColumn::make('payment_slip_path')
+                    ->label('Slip')
+                    ->boolean()
+                    ->trueIcon('heroicon-o-paper-clip')
+                    ->falseIcon('heroicon-o-minus')
+                    ->trueColor('warning')
+                    ->falseColor('gray')
+                    ->getStateUsing(fn ($record) => ! empty($record->payment_slip_path)),
+
                 TextColumn::make('total')
                     ->label('Total (PKR)')
                     ->money('PKR')
@@ -73,6 +83,12 @@ class OrdersTable
 
                 SelectFilter::make('payment_status')
                     ->options(PaymentStatus::class),
+
+                TernaryFilter::make('payment_slip_path')
+                    ->label('Has Slip')
+                    ->nullable()
+                    ->trueLabel('Slip submitted')
+                    ->falseLabel('No slip'),
             ])
             ->recordActions([
                 EditAction::make(),

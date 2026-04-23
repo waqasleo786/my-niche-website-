@@ -6,6 +6,7 @@ namespace App\Services;
 
 use App\Enums\PaymentMethod;
 use App\Models\Order;
+use App\Services\Payments\BankTransferStrategy;
 use App\Services\Payments\CodStrategy;
 use App\Services\Payments\EasyPaisaStrategy;
 use App\Services\Payments\JazzCashStrategy;
@@ -17,9 +18,10 @@ class PaymentService
     private function resolveStrategy(PaymentMethod $method): PaymentStrategyInterface
     {
         return match ($method) {
-            PaymentMethod::COD       => app(CodStrategy::class),
-            PaymentMethod::JazzCash  => app(JazzCashStrategy::class),
-            PaymentMethod::EasyPaisa => app(EasyPaisaStrategy::class),
+            PaymentMethod::COD          => app(CodStrategy::class),
+            PaymentMethod::JazzCash     => app(JazzCashStrategy::class),
+            PaymentMethod::EasyPaisa    => app(EasyPaisaStrategy::class),
+            PaymentMethod::BankTransfer => app(BankTransferStrategy::class),
         };
     }
 

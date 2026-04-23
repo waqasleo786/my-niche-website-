@@ -27,10 +27,12 @@
 <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
     <h1 class="text-2xl font-bold text-gray-900 mb-8">{{ __('Checkout') }}</h1>
 
-    <form method="POST" action="{{ route('checkout.store') }}" id="checkout-form">
+    {{-- enctype required for file upload --}}
+    <form method="POST" action="{{ route('checkout.store') }}" id="checkout-form" enctype="multipart/form-data">
         @csrf
 
-        <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
+        <div class="grid grid-cols-1 gap-8 lg:grid-cols-3"
+             x-data="checkoutForm({{ Js::from($paymentAccounts) }})">
 
             {{-- ============================================================
                  LEFT: Shipping + Payment
@@ -168,7 +170,9 @@
                     </div>
                 </div>
 
-                {{-- Payment Method --}}
+                {{-- ============================================================
+                     PAYMENT METHOD
+                     ============================================================ --}}
                 <div class="rounded-xl border border-gray-100 bg-white p-6 shadow-sm">
                     <h2 class="text-base font-semibold text-gray-900 mb-5">{{ __('Payment Method') }}</h2>
 
@@ -179,6 +183,7 @@
                             <input type="radio"
                                    name="payment_method"
                                    value="cod"
+                                   x-model="paymentMethod"
                                    {{ old('payment_method', 'cod') === 'cod' ? 'checked' : '' }}
                                    class="h-4 w-4 text-primary border-gray-300 focus:ring-primary">
                             <div class="flex items-center gap-3">
@@ -200,6 +205,7 @@
                             <input type="radio"
                                    name="payment_method"
                                    value="jazzcash"
+                                   x-model="paymentMethod"
                                    {{ old('payment_method') === 'jazzcash' ? 'checked' : '' }}
                                    class="h-4 w-4 text-primary border-gray-300 focus:ring-primary">
                             <div class="flex items-center gap-3">
@@ -208,7 +214,7 @@
                                 </div>
                                 <div>
                                     <p class="text-sm font-semibold text-gray-900">JazzCash</p>
-                                    <p class="text-xs text-gray-500">{{ __('Pay via JazzCash mobile wallet') }}</p>
+                                    <p class="text-xs text-gray-500">{{ __('Transfer to our JazzCash account & upload slip') }}</p>
                                 </div>
                             </div>
                         </label>
@@ -218,6 +224,7 @@
                             <input type="radio"
                                    name="payment_method"
                                    value="easypaisa"
+                                   x-model="paymentMethod"
                                    {{ old('payment_method') === 'easypaisa' ? 'checked' : '' }}
                                    class="h-4 w-4 text-primary border-gray-300 focus:ring-primary">
                             <div class="flex items-center gap-3">
@@ -226,7 +233,29 @@
                                 </div>
                                 <div>
                                     <p class="text-sm font-semibold text-gray-900">EasyPaisa</p>
-                                    <p class="text-xs text-gray-500">{{ __('Pay via EasyPaisa mobile wallet') }}</p>
+                                    <p class="text-xs text-gray-500">{{ __('Transfer to our EasyPaisa account & upload slip') }}</p>
+                                </div>
+                            </div>
+                        </label>
+
+                        {{-- Bank Transfer --}}
+                        <label class="flex cursor-pointer items-center gap-4 rounded-lg border border-gray-200 p-4 hover:border-primary hover:bg-blue-50/30 transition-colors has-[:checked]:border-primary has-[:checked]:bg-blue-50/40">
+                            <input type="radio"
+                                   name="payment_method"
+                                   value="bank_transfer"
+                                   x-model="paymentMethod"
+                                   {{ old('payment_method') === 'bank_transfer' ? 'checked' : '' }}
+                                   class="h-4 w-4 text-primary border-gray-300 focus:ring-primary">
+                            <div class="flex items-center gap-3">
+                                <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-blue-100">
+                                    <svg class="h-5 w-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                              d="M3 6l9-4 9 4M3 6v12l9 4 9-4V6M12 2v20"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-semibold text-gray-900">{{ __('Bank Transfer') }}</p>
+                                    <p class="text-xs text-gray-500">{{ __('Direct bank transfer & upload deposit slip') }}</p>
                                 </div>
                             </div>
                         </label>
@@ -236,6 +265,174 @@
                     @error('payment_method')
                         <p class="mt-2 text-xs text-red-500">{{ $message }}</p>
                     @enderror
+
+                    {{-- ============================================================
+                         PAYMENT DETAILS PANEL (shows for non-COD methods)
+                         ============================================================ --}}
+                    <div x-show="requiresSlip"
+                         x-transition:enter="transition ease-out duration-300"
+                         x-transition:enter-start="opacity-0 -translate-y-2"
+                         x-transition:enter-end="opacity-100 translate-y-0"
+                         x-cloak
+                         class="mt-5">
+
+                        {{-- Account Details Box --}}
+                        <div class="rounded-lg border-2 border-dashed border-primary/30 bg-primary/5 p-5">
+
+                            <p class="text-sm font-semibold text-primary mb-3 flex items-center gap-2">
+                                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                {{ __('Send payment to this account:') }}
+                            </p>
+
+                            {{-- JazzCash details --}}
+                            <div x-show="paymentMethod === 'jazzcash'" class="space-y-2 text-sm">
+                                <div class="flex justify-between items-center py-2 border-b border-primary/10">
+                                    <span class="text-gray-500">{{ __('Account Name') }}</span>
+                                    <span class="font-bold text-gray-900" x-text="accounts.jazzcash.account_name"></span>
+                                </div>
+                                <div class="flex justify-between items-center py-2">
+                                    <span class="text-gray-500">{{ __('JazzCash Number') }}</span>
+                                    <button type="button"
+                                            @click="copyToClipboard(accounts.jazzcash.account_number)"
+                                            class="flex items-center gap-1.5 font-bold text-primary hover:text-primary/70 transition-colors">
+                                        <span x-text="accounts.jazzcash.account_number"></span>
+                                        <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                  d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+
+                            {{-- EasyPaisa details --}}
+                            <div x-show="paymentMethod === 'easypaisa'" class="space-y-2 text-sm">
+                                <div class="flex justify-between items-center py-2 border-b border-primary/10">
+                                    <span class="text-gray-500">{{ __('Account Name') }}</span>
+                                    <span class="font-bold text-gray-900" x-text="accounts.easypaisa.account_name"></span>
+                                </div>
+                                <div class="flex justify-between items-center py-2">
+                                    <span class="text-gray-500">{{ __('EasyPaisa Number') }}</span>
+                                    <button type="button"
+                                            @click="copyToClipboard(accounts.easypaisa.account_number)"
+                                            class="flex items-center gap-1.5 font-bold text-primary hover:text-primary/70 transition-colors">
+                                        <span x-text="accounts.easypaisa.account_number"></span>
+                                        <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                  d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+
+                            {{-- Bank Transfer details --}}
+                            <div x-show="paymentMethod === 'bank_transfer'" class="space-y-2 text-sm">
+                                <div class="flex justify-between items-center py-2 border-b border-primary/10">
+                                    <span class="text-gray-500">{{ __('Bank Name') }}</span>
+                                    <span class="font-bold text-gray-900" x-text="accounts.bank.bank_name"></span>
+                                </div>
+                                <div class="flex justify-between items-center py-2 border-b border-primary/10">
+                                    <span class="text-gray-500">{{ __('Account Name') }}</span>
+                                    <span class="font-bold text-gray-900" x-text="accounts.bank.account_name"></span>
+                                </div>
+                                <div class="flex justify-between items-center py-2 border-b border-primary/10">
+                                    <span class="text-gray-500">{{ __('Account Number') }}</span>
+                                    <button type="button"
+                                            @click="copyToClipboard(accounts.bank.account_number)"
+                                            class="flex items-center gap-1.5 font-bold text-primary hover:text-primary/70 transition-colors">
+                                        <span x-text="accounts.bank.account_number"></span>
+                                        <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                  d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="flex justify-between items-center py-2">
+                                    <span class="text-gray-500">{{ __('IBAN') }}</span>
+                                    <button type="button"
+                                            @click="copyToClipboard(accounts.bank.iban)"
+                                            class="flex items-center gap-1.5 font-bold text-primary hover:text-primary/70 transition-colors text-xs">
+                                        <span x-text="accounts.bank.iban"></span>
+                                        <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                  d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+
+                            {{-- Copied notification --}}
+                            <div x-show="copied"
+                                 x-transition
+                                 class="mt-2 text-center text-xs text-green-600 font-medium">
+                                ✓ {{ __('Copied to clipboard!') }}
+                            </div>
+                        </div>
+
+                        {{-- ============================================================
+                             SLIP UPLOAD
+                             ============================================================ --}}
+                        <div class="mt-4">
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">
+                                {{ __('Upload Payment Receipt / Slip') }}
+                                <span class="text-red-500">*</span>
+                            </label>
+                            <p class="text-xs text-gray-500 mb-3">
+                                {{ __('After transferring the amount, take a screenshot of the confirmation and upload it here. Accepted: JPG, PNG, PDF (max 5MB)') }}
+                            </p>
+
+                            {{-- Drop zone --}}
+                            <label for="payment_slip"
+                                   class="relative flex flex-col items-center justify-center w-full h-36 rounded-lg border-2 border-dashed cursor-pointer transition-colors"
+                                   :class="slipFile ? 'border-green-400 bg-green-50' : 'border-gray-300 bg-gray-50 hover:border-primary hover:bg-blue-50/30'">
+
+                                {{-- No file selected --}}
+                                <div x-show="!slipFile" class="text-center px-4">
+                                    <svg class="mx-auto mb-2 h-8 w-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                              d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+                                    </svg>
+                                    <p class="text-sm text-gray-500">
+                                        <span class="font-semibold text-primary">{{ __('Click to upload') }}</span>
+                                        {{ __('or drag & drop') }}
+                                    </p>
+                                    <p class="text-xs text-gray-400 mt-1">JPG, PNG, PDF — max 5MB</p>
+                                </div>
+
+                                {{-- File selected --}}
+                                <div x-show="slipFile" class="text-center px-4">
+                                    <svg class="mx-auto mb-2 h-8 w-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                    </svg>
+                                    <p class="text-sm font-semibold text-green-700" x-text="slipFile"></p>
+                                    <p class="text-xs text-green-600 mt-1">{{ __('Slip attached ✓ — Click to change') }}</p>
+                                </div>
+
+                                <input type="file"
+                                       id="payment_slip"
+                                       name="payment_slip"
+                                       accept=".jpg,.jpeg,.png,.webp,.pdf"
+                                       class="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                                       @change="handleSlipUpload($event)">
+                            </label>
+
+                            @error('payment_slip')
+                                <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        {{-- Instruction note --}}
+                        <div class="mt-3 flex items-start gap-2 rounded-lg bg-amber-50 border border-amber-200 px-4 py-3">
+                            <svg class="h-4 w-4 text-amber-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                            </svg>
+                            <p class="text-xs text-amber-700">
+                                {{ __('Your order will be confirmed after our team manually verifies your payment (usually within a few hours). You will receive an email notification once verified.') }}
+                            </p>
+                        </div>
+                    </div>
+
                 </div>
 
             </div>
@@ -290,10 +487,14 @@
                         </div>
                     </dl>
 
+                    {{-- Place Order Button --}}
                     <button type="submit"
-                            class="mt-6 w-full rounded-lg bg-primary px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-primary/90 transition-colors disabled:opacity-70"
-                            id="place-order-btn">
-                        {{ __('Place Order') }}
+                            id="place-order-btn"
+                            :disabled="requiresSlip && !slipFile"
+                            class="mt-6 w-full rounded-lg bg-primary px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                        <span x-show="!requiresSlip">{{ __('Place Order') }}</span>
+                        <span x-show="requiresSlip && !slipFile">{{ __('Attach Slip to Place Order') }}</span>
+                        <span x-show="requiresSlip && slipFile">{{ __('Place Order & Submit Slip') }}</span>
                     </button>
 
                     <p class="mt-3 text-center text-xs text-gray-400">
@@ -326,10 +527,39 @@
         };
     }
 
+    function checkoutForm(accounts) {
+        return {
+            accounts: accounts,
+            paymentMethod: '{{ old('payment_method', 'cod') }}',
+            slipFile: null,
+            copied: false,
+
+            get requiresSlip() {
+                return ['jazzcash', 'easypaisa', 'bank_transfer'].includes(this.paymentMethod);
+            },
+
+            handleSlipUpload(event) {
+                const file = event.target.files[0];
+                if (file) {
+                    this.slipFile = file.name;
+                }
+            },
+
+            copyToClipboard(text) {
+                navigator.clipboard.writeText(text).then(() => {
+                    this.copied = true;
+                    setTimeout(() => { this.copied = false; }, 2000);
+                });
+            },
+        };
+    }
+
     document.getElementById('checkout-form').addEventListener('submit', function () {
         const btn = document.getElementById('place-order-btn');
-        btn.disabled = true;
-        btn.textContent = '{{ __("Placing order...") }}';
+        if (!btn.disabled) {
+            btn.disabled = true;
+            btn.textContent = '{{ __("Placing order...") }}';
+        }
     });
 </script>
 @endpush

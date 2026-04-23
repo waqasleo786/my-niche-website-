@@ -6,28 +6,31 @@ namespace App\Enums;
 
 enum PaymentStatus: string
 {
-    case Pending  = 'pending';
-    case Paid     = 'paid';
-    case Failed   = 'failed';
-    case Refunded = 'refunded';
+    case Pending       = 'pending';
+    case SlipSubmitted = 'slip_submitted';
+    case Paid          = 'paid';
+    case Failed        = 'failed';
+    case Refunded      = 'refunded';
 
     public function label(): string
     {
         return match($this) {
-            self::Pending  => 'Pending',
-            self::Paid     => 'Paid',
-            self::Failed   => 'Failed',
-            self::Refunded => 'Refunded',
+            self::Pending       => 'Pending',
+            self::SlipSubmitted => 'Slip Submitted',
+            self::Paid          => 'Paid',
+            self::Failed        => 'Failed',
+            self::Refunded      => 'Refunded',
         };
     }
 
     public function color(): string
     {
         return match($this) {
-            self::Pending  => 'yellow',
-            self::Paid     => 'green',
-            self::Failed   => 'red',
-            self::Refunded => 'gray',
+            self::Pending       => 'yellow',
+            self::SlipSubmitted => 'orange',
+            self::Paid          => 'green',
+            self::Failed        => 'red',
+            self::Refunded      => 'gray',
         };
     }
 

@@ -6,18 +6,57 @@
 
 <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-16">
 
-    {{-- Success Header --}}
+    {{-- ============================================================
+         SUCCESS HEADER — different for pending-payment orders
+         ============================================================ --}}
     <div class="text-center mb-10">
-        <div class="mx-auto mb-5 flex h-20 w-20 items-center justify-center rounded-full bg-green-100">
-            <svg class="h-10 w-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-            </svg>
-        </div>
-        <h1 class="text-3xl font-bold text-gray-900">{{ __('Order Confirmed!') }}</h1>
-        <p class="mt-2 text-gray-500">{{ __('Thank you for your order. We will contact you shortly.') }}</p>
+        @if ($order->isAwaitingVerification())
+            <div class="mx-auto mb-5 flex h-20 w-20 items-center justify-center rounded-full bg-amber-100">
+                <svg class="h-10 w-10 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+            </div>
+            <h1 class="text-3xl font-bold text-gray-900">{{ __('Order Placed!') }}</h1>
+            <p class="mt-2 text-gray-500">{{ __('Your order is awaiting payment verification by our team.') }}</p>
+        @else
+            <div class="mx-auto mb-5 flex h-20 w-20 items-center justify-center rounded-full bg-green-100">
+                <svg class="h-10 w-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+            </div>
+            <h1 class="text-3xl font-bold text-gray-900">{{ __('Order Confirmed!') }}</h1>
+            <p class="mt-2 text-gray-500">{{ __('Thank you for your order. We will contact you shortly.') }}</p>
+        @endif
     </div>
 
-    {{-- Order Card --}}
+    {{-- ============================================================
+         PAYMENT PENDING NOTICE BANNER
+         ============================================================ --}}
+    @if ($order->isAwaitingVerification())
+        <div class="mb-6 rounded-xl border border-amber-200 bg-amber-50 px-5 py-4">
+            <div class="flex items-start gap-3">
+                <svg class="h-5 w-5 text-amber-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <div>
+                    <p class="text-sm font-semibold text-amber-800">{{ __('Payment Slip Received — Verification Pending') }}</p>
+                    <p class="text-sm text-amber-700 mt-1">
+                        {{ __('Our team will verify your payment slip within a few hours. You will receive an email confirmation once your payment is verified and the order is processed.') }}
+                    </p>
+                    @if ($order->payment_deadline_at)
+                        <p class="text-xs text-amber-600 mt-2 font-medium">
+                            {{ __('Please verify before:') }}
+                            <strong>{{ $order->payment_deadline_at->format('d M Y, h:i A') }}</strong>
+                        </p>
+                    @endif
+                </div>
+            </div>
+        </div>
+    @endif
+
+    {{-- ============================================================
+         ORDER CARD
+         ============================================================ --}}
     <div class="rounded-xl border border-gray-100 bg-white shadow-sm overflow-hidden">
 
         {{-- Order Header --}}
@@ -35,9 +74,15 @@
                 <p class="text-sm font-semibold text-gray-700">{{ $order->payment_method->label() }}</p>
             </div>
             <div>
-                <span class="inline-flex items-center rounded-full bg-yellow-100 px-3 py-1 text-xs font-semibold text-yellow-800">
-                    {{ $order->status->label() }}
-                </span>
+                @if ($order->isAwaitingVerification())
+                    <span class="inline-flex items-center rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-800">
+                        ⏳ {{ __('Awaiting Verification') }}
+                    </span>
+                @else
+                    <span class="inline-flex items-center rounded-full bg-yellow-100 px-3 py-1 text-xs font-semibold text-yellow-800">
+                        {{ $order->status->label() }}
+                    </span>
+                @endif
             </div>
         </div>
 
@@ -108,7 +153,9 @@
 
     </div>
 
-    {{-- Actions --}}
+    {{-- ============================================================
+         ACTIONS
+         ============================================================ --}}
     <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
         <a href="{{ route('shop') }}"
            class="inline-flex items-center justify-center rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-primary/90 transition-colors">

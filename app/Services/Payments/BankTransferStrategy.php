@@ -7,7 +7,7 @@ namespace App\Services\Payments;
 use App\Models\Order;
 use Symfony\Component\HttpFoundation\Response;
 
-class EasyPaisaStrategy implements PaymentStrategyInterface
+class BankTransferStrategy implements PaymentStrategyInterface
 {
     public function initiate(Order $order): Response
     {
