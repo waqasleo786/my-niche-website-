@@ -118,15 +118,15 @@ class OrderForm
                     ->schema([
                         Placeholder::make('subtotal')
                             ->label('Subtotal')
-                            ->content(fn ($record) => $record ? 'Rs. ' . number_format($record->subtotal, 2) : '-'),
+                            ->content(fn ($record) => $record ? 'Rs. ' . number_format((float) $record->subtotal, 2) : '-'),
 
                         Placeholder::make('shipping_cost')
                             ->label('Shipping')
-                            ->content(fn ($record) => $record ? 'Rs. ' . number_format($record->shipping_cost, 2) : '-'),
+                            ->content(fn ($record) => $record ? 'Rs. ' . number_format((float) $record->shipping_cost, 2) : '-'),
 
                         Placeholder::make('total')
                             ->label('Total')
-                            ->content(fn ($record) => $record ? 'Rs. ' . number_format($record->total, 2) : '-'),
+                            ->content(fn ($record) => $record ? 'Rs. ' . number_format((float) $record->total, 2) : '-'),
                     ]),
 
                 Section::make('Notes')
