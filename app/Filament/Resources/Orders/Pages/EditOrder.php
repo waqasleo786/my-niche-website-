@@ -12,6 +12,7 @@ use Filament\Actions\DeleteAction;
 use Filament\Forms\Components\Textarea;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\EditRecord;
+use Illuminate\Support\HtmlString;
 
 class EditOrder extends EditRecord
 {
@@ -56,17 +57,17 @@ class EditOrder extends EditRecord
                     . ' ab process ho raha hai. Jald hi dispatch karein ge. Shukriya! — Shahid Brothers'
                 );
 
+                $waUrl = 'https://wa.me/' . $this->waPhone() . '?text=' . $msg;
+
                 Notification::make()
                     ->title('Payment verified! ✅')
-                    ->body('Customer ko WhatsApp pe notify karein.')
-                    ->actions([
-                        \Filament\Notifications\Actions\Action::make('whatsapp')
-                            ->label('Send WhatsApp')
-                            ->url('https://wa.me/' . $this->waPhone() . '?text=' . $msg)
-                            ->openUrlInNewTab()
-                            ->button()
-                            ->color('success'),
-                    ])
+                    ->body(new HtmlString(
+                        'Order Processing mein move ho gaya.<br><br>'
+                        . '<a href="' . $waUrl . '" target="_blank" '
+                        . 'style="display:inline-block;padding:6px 14px;background:#25d366;color:#fff;border-radius:6px;text-decoration:none;font-size:13px;font-weight:600;">'
+                        . '📲 Customer ko WhatsApp karein'
+                        . '</a>'
+                    ))
                     ->success()
                     ->persistent()
                     ->send();
@@ -111,17 +112,17 @@ class EditOrder extends EditRecord
                     . 'Kripya dobara clear screenshot send karein. Shukriya! — Shahid Brothers'
                 );
 
+                $waUrl = 'https://wa.me/' . $this->waPhone() . '?text=' . $msg;
+
                 Notification::make()
                     ->title('Payment rejected ❌')
-                    ->body('Customer ko WhatsApp pe reason bhejein.')
-                    ->actions([
-                        \Filament\Notifications\Actions\Action::make('whatsapp')
-                            ->label('Send WhatsApp')
-                            ->url('https://wa.me/' . $this->waPhone() . '?text=' . $msg)
-                            ->openUrlInNewTab()
-                            ->button()
-                            ->color('danger'),
-                    ])
+                    ->body(new HtmlString(
+                        'Status update ho gaya.<br><br>'
+                        . '<a href="' . $waUrl . '" target="_blank" '
+                        . 'style="display:inline-block;padding:6px 14px;background:#dc2626;color:#fff;border-radius:6px;text-decoration:none;font-size:13px;font-weight:600;">'
+                        . '📲 Customer ko Reason WhatsApp karein'
+                        . '</a>'
+                    ))
                     ->danger()
                     ->persistent()
                     ->send();
