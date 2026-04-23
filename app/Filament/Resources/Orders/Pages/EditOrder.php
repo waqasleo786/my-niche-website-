@@ -12,7 +12,6 @@ use Filament\Actions\DeleteAction;
 use Filament\Forms\Components\Textarea;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\EditRecord;
-use Illuminate\Support\HtmlString;
 
 class EditOrder extends EditRecord
 {
@@ -59,15 +58,11 @@ class EditOrder extends EditRecord
 
                 $waUrl = 'https://wa.me/' . $this->waPhone() . '?text=' . $msg;
 
+                $this->js("window.open('" . $waUrl . "', '_blank')");
+
                 Notification::make()
                     ->title('Payment verified! ✅')
-                    ->body(new HtmlString(
-                        'Order Processing mein move ho gaya.<br><br>'
-                        . '<a href="' . $waUrl . '" target="_blank" '
-                        . 'style="display:inline-block;padding:6px 14px;background:#25d366;color:#fff;border-radius:6px;text-decoration:none;font-size:13px;font-weight:600;">'
-                        . '📲 Customer ko WhatsApp karein'
-                        . '</a>'
-                    ))
+                    ->body('Order Processing mein move ho gaya. WhatsApp tab khul gaya — customer ko message bhejein.')
                     ->success()
                     ->persistent()
                     ->send();
@@ -114,15 +109,11 @@ class EditOrder extends EditRecord
 
                 $waUrl = 'https://wa.me/' . $this->waPhone() . '?text=' . $msg;
 
+                $this->js("window.open('" . $waUrl . "', '_blank')");
+
                 Notification::make()
                     ->title('Payment rejected ❌')
-                    ->body(new HtmlString(
-                        'Status update ho gaya.<br><br>'
-                        . '<a href="' . $waUrl . '" target="_blank" '
-                        . 'style="display:inline-block;padding:6px 14px;background:#dc2626;color:#fff;border-radius:6px;text-decoration:none;font-size:13px;font-weight:600;">'
-                        . '📲 Customer ko Reason WhatsApp karein'
-                        . '</a>'
-                    ))
+                    ->body('Status update ho gaya. WhatsApp tab khul gaya — customer ko reason bhejein.')
                     ->danger()
                     ->persistent()
                     ->send();
