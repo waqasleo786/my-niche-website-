@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Shahid Brothers') }} — @yield('title', 'Quality Promotional Gifts')</title>
-    <meta name="description" content="@yield('description', 'Shahid Brothers imports premium promotional and gift items from China. Bulk orders for businesses across Pakistan.')">
+    {!! SEOMeta::generate() !!}
+    {!! OpenGraph::generate() !!}
+    {!! Twitter::generate() !!}
+    {!! JsonLd::generate() !!}
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles

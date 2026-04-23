@@ -1,7 +1,11 @@
 @extends('layouts.storefront')
 
-@section('title', __('Terms & Conditions'))
-@section('description', 'Read the Terms & Conditions for Shahid Brothers. Understand our order, payment, return, and B2B policies.')
+@php
+    \Artesaos\SEOTools\Facades\SEOMeta::setTitle('Terms & Conditions');
+    \Artesaos\SEOTools\Facades\SEOMeta::setDescription('Read the Terms & Conditions for Shahid Brothers. Understand our order, payment, return, and B2B policies.');
+    \Artesaos\SEOTools\Facades\OpenGraph::setTitle('Terms & Conditions — Shahid Brothers');
+    \Artesaos\SEOTools\Facades\OpenGraph::setUrl(route('terms'));
+@endphp
 
 @section('content')
 

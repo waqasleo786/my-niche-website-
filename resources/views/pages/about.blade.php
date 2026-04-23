@@ -1,7 +1,12 @@
 ﻿@extends('layouts.storefront')
 
-@section('title', __('About Us'))
-@section('description', __('Learn about Shahid Brothers - Pakistan\'s trusted source for quality promotional gifts and branded items imported directly from China.'))
+@php
+    \Artesaos\SEOTools\Facades\SEOMeta::setTitle('About Us');
+    \Artesaos\SEOTools\Facades\SEOMeta::setDescription("Learn about Shahid Brothers — Pakistan's trusted source for quality promotional and corporate gift items imported directly from China.");
+    \Artesaos\SEOTools\Facades\OpenGraph::setTitle('About Us — Shahid Brothers');
+    \Artesaos\SEOTools\Facades\OpenGraph::setDescription("Pakistan's trusted source for quality promotional and corporate gift items.");
+    \Artesaos\SEOTools\Facades\OpenGraph::setUrl(route('about'));
+@endphp
 
 @section('content')
 

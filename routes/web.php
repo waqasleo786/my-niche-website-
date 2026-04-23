@@ -16,6 +16,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class)->name('home');
 
+Route::get('/sitemap.xml', function () {
+    if (! file_exists(public_path('sitemap.xml'))) {
+        \Artisan::call('sitemap:generate');
+    }
+    return response()->file(public_path('sitemap.xml'), ['Content-Type' => 'application/xml']);
+})->name('sitemap');
+
 Route::get('/shop', ShopController::class)->name('shop');
 
 Route::get('/products/{slug}', [ProductController::class, 'show'])->name('products.show');

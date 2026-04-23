@@ -1,7 +1,11 @@
 @extends('layouts.storefront')
 
-@section('title', __('Privacy Policy'))
-@section('description', 'Read the Privacy Policy for Shahid Brothers. Learn how we collect, use, and protect your personal information.')
+@php
+    \Artesaos\SEOTools\Facades\SEOMeta::setTitle('Privacy Policy');
+    \Artesaos\SEOTools\Facades\SEOMeta::setDescription('Read the Privacy Policy for Shahid Brothers. Learn how we collect, use, and protect your personal information.');
+    \Artesaos\SEOTools\Facades\OpenGraph::setTitle('Privacy Policy — Shahid Brothers');
+    \Artesaos\SEOTools\Facades\OpenGraph::setUrl(route('privacy'));
+@endphp
 
 @section('content')
 
