@@ -4,8 +4,13 @@
 
             {{-- Brand --}}
             <div>
-                <h3 class="text-lg font-bold">Shahid Brothers</h3>
-                <p class="mt-2 text-sm text-blue-200">
+                <a href="{{ url('/') }}">
+                    <img src="{{ asset('images/logo-footer.png') }}"
+                         alt="Shahid Brothers"
+                         class="h-10 w-auto"
+                         loading="lazy">
+                </a>
+                <p class="mt-3 text-sm text-blue-200">
                     {{ __('We import quality promotional and gift items from China and deliver across Pakistan.') }}
                 </p>
             </div>

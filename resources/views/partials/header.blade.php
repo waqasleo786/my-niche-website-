@@ -3,8 +3,11 @@
         <div class="flex h-16 items-center justify-between">
 
             {{-- Logo --}}
-            <a href="{{ url('/') }}" class="flex items-center gap-x-2">
-                <span class="text-xl font-bold text-[#1e3a5f]">Shahid Brothers</span>
+            <a href="{{ url('/') }}" class="flex items-center">
+                <img src="{{ asset('images/logo-header.png') }}"
+                     alt="Shahid Brothers"
+                     class="h-10 w-auto"
+                     loading="eager">
             </a>
 
             {{-- Desktop Navigation --}}
