@@ -15,7 +15,7 @@
                 <svg class="h-3.5 w-3.5 text-gold shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
                 </svg>
-                ðŸŽ {{ __('Free delivery on orders above') }} <strong class="ms-1 text-gold">Rs. 5,000</strong>
+                {{ __('Free delivery on orders above') }} <strong class="ms-1 text-gold">Rs. 5,000</strong>
             </span>
             <span class="hidden sm:block text-white/30">|</span>
             <span class="flex items-center gap-x-1.5">
@@ -69,12 +69,13 @@
     @php
         $slides = [
             [
-                'bg'      => 'from-[#1e3a5f] via-[#1e3a5f] to-[#162e4e]',
-                'badge'   => __('ðŸ† #1 Promotional Gifts Brand'),
-                'heading' => __('Premium Promotional Gifts for Every Occasion'),
-                'sub'     => __('Bulk orders for businesses. Fast delivery across Pakistan.'),
-                'accent'  => 'text-gold',
-                'products'=> [
+                'bg'         => 'from-[#1e3a5f] via-[#1e3a5f] to-[#162e4e]',
+                'badge'      => __('#1 Promotional Gifts Brand'),
+                'heading'    => __('Premium Promotional Gifts for Every Occasion'),
+                'sub'        => __('Bulk orders for businesses. Fast delivery across Pakistan.'),
+                'text_color' => 'text-blue-200',
+                'trust'      => ['JazzCash & EasyPaisa', __('Cash on Delivery available'), __('Free delivery above Rs. 5,000')],
+                'products'   => [
                     ['icon' => 'M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z', 'name' => __('Keychains'), 'price' => 'Rs. 180+', 'color' => 'bg-amber-500/20 text-amber-300'],
                     ['icon' => 'M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z', 'name' => __('Pens'), 'price' => 'Rs. 120+', 'color' => 'bg-blue-500/20 text-blue-300'],
                     ['icon' => 'M13 10V3L4 14h7v7l9-11h-7z', 'name' => __('Power Banks'), 'price' => 'Rs. 1,800+', 'color' => 'bg-green-500/20 text-green-300'],
@@ -82,12 +83,13 @@
                 ],
             ],
             [
-                'bg'      => 'from-[#152d4a] via-[#1a3459] to-[#1e3a5f]',
-                'badge'   => __('ðŸ“¦ Minimum 50 pieces per order'),
-                'heading' => __('Branded Gifts for Your Business'),
-                'sub'     => __('Custom logo printing on keychains, pens, power banks & more.'),
-                'accent'  => 'text-gold',
-                'products'=> [
+                'bg'         => 'from-[#064e3b] via-[#065f46] to-[#047857]',
+                'badge'      => __('Minimum 50 pieces per order'),
+                'heading'    => __('Branded Gifts for Your Business'),
+                'sub'        => __('Custom logo printing on keychains, pens, power banks & more.'),
+                'text_color' => 'text-emerald-200',
+                'trust'      => [__('Minimum 50 pieces per order'), __('Custom logo printing available'), __('Up to 40% off retail price')],
+                'products'   => [
                     ['icon' => 'M9 3v10m3-7l-3 3-3-3m9 4a3 3 0 11-6 0 3 3 0 016 0z M5 20h14', 'name' => __('USB Drives'), 'price' => 'Rs. 720+', 'color' => 'bg-cyan-500/20 text-cyan-300'],
                     ['icon' => 'M9 3h6l1 3H8L9 3zM8 6v14a1 1 0 001 1h6a1 1 0 001-1V6H8z M8 10h8', 'name' => __('Bottles & Tumblers'), 'price' => 'Rs. 950+', 'color' => 'bg-teal-500/20 text-teal-300'],
                     ['icon' => 'M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z', 'name' => __('Keychains'), 'price' => 'Rs. 320+', 'color' => 'bg-rose-500/20 text-rose-300'],
@@ -95,12 +97,13 @@
                 ],
             ],
             [
-                'bg'      => 'from-[#1a3356] via-[#1e3a5f] to-[#243f6b]',
-                'badge'   => __('ðŸšš Delivery across Pakistan'),
-                'heading' => __('Quality Imports, Trusted Service'),
-                'sub'     => __('B2B wholesale prices for registered business customers.'),
-                'accent'  => 'text-gold',
-                'products'=> [
+                'bg'         => 'from-[#312e81] via-[#3730a3] to-[#4338ca]',
+                'badge'      => __('Delivery across Pakistan'),
+                'heading'    => __('Quality Imports, Trusted Service'),
+                'sub'        => __('B2B wholesale prices for registered business customers.'),
+                'text_color' => 'text-indigo-200',
+                'trust'      => [__('25+ cities served'), __('5+ years experience'), __('500+ satisfied clients')],
+                'products'   => [
                     ['icon' => 'M13 10V3L4 14h7v7l9-11h-7z', 'name' => __('Power Banks'), 'price' => 'Rs. 1,400+', 'color' => 'bg-emerald-500/20 text-emerald-300'],
                     ['icon' => 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z', 'name' => __('Clocks'), 'price' => 'Rs. 1,200+', 'color' => 'bg-violet-500/20 text-violet-300'],
                     ['icon' => 'M9 3v10m3-7l-3 3-3-3m9 4a3 3 0 11-6 0 3 3 0 016 0z M5 20h14', 'name' => __('USB Drives'), 'price' => 'Rs. 720+', 'color' => 'bg-orange-500/20 text-orange-300'],
@@ -144,7 +147,7 @@
                     </h1>
 
                     {{-- Subtext --}}
-                    <p class="mt-4 text-base text-blue-200 max-w-md mx-auto lg:mx-0">
+                    <p class="mt-4 text-base {{ $slide['text_color'] }} max-w-md mx-auto lg:mx-0">
                         {{ $slide['sub'] }}
                     </p>
 
@@ -163,16 +166,12 @@
 
                     {{-- Trust Badges --}}
                     <div class="mt-8 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 lg:justify-start">
-                        @foreach([
-                            ['icon' => 'M5 13l4 4L19 7', 'label' => 'JazzCash & EasyPaisa'],
-                            ['icon' => 'M5 13l4 4L19 7', 'label' => __('Cash on Delivery available')],
-                            ['icon' => 'M5 13l4 4L19 7', 'label' => __('Free delivery on orders above') . ' Rs. 5,000'],
-                        ] as $badge)
-                            <span class="flex items-center gap-x-1.5 text-xs text-blue-300">
+                        @foreach($slide['trust'] as $trustLabel)
+                            <span class="flex items-center gap-x-1.5 text-xs {{ $slide['text_color'] }}">
                                 <svg class="h-3.5 w-3.5 text-green-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="{{ $badge['icon'] }}"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
                                 </svg>
-                                {{ $badge['label'] }}
+                                {{ $trustLabel }}
                             </span>
                         @endforeach
                     </div>
@@ -666,7 +665,7 @@
                     </svg>
                 </a>
                 <p class="text-xs text-blue-300">
-                    {{ __('Free registration') }} Â· {{ __('No hidden charges') }}
+                    {{ __('Free registration') }} · {{ __('No hidden charges') }}
                 </p>
                 <div class="flex items-center gap-x-1.5">
                     @for($i = 0; $i < 3; $i++)
