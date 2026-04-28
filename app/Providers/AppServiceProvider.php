@@ -21,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        RedirectIfAuthenticated::redirectUsing(fn () => url('/'));
+        RedirectIfAuthenticated::redirectUsing(fn () => route('dashboard'));
 
         Event::listen(Login::class, MergeCartOnLogin::class);
 
