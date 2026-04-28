@@ -78,18 +78,20 @@
                                 {{ $order->items->count() }} {{ __('items') }}
                             </div>
                         </div>
+                        @php
+                            $statusColors = [
+                                'pending'    => 'bg-amber-100 text-amber-700',
+                                'confirmed'  => 'bg-blue-100 text-blue-700',
+                                'processing' => 'bg-indigo-100 text-indigo-700',
+                                'shipped'    => 'bg-cyan-100 text-cyan-700',
+                                'delivered'  => 'bg-green-100 text-green-700',
+                                'cancelled'  => 'bg-red-100 text-red-700',
+                            ];
+                            $statusClass = $statusColors[$order->status->value] ?? 'bg-gray-100 text-gray-700';
+                        @endphp
                         <div class="text-right">
                             <div class="text-sm font-extrabold text-primary">{{ $order->getFormattedTotal() }}</div>
-                            <span class="inline-block rounded-full px-2.5 py-0.5 text-xs font-semibold mt-1
-                                {{ match($order->status->value) {
-                                    'pending'    => 'bg-amber-100 text-amber-700',
-                                    'confirmed'  => 'bg-blue-100 text-blue-700',
-                                    'processing' => 'bg-indigo-100 text-indigo-700',
-                                    'shipped'    => 'bg-cyan-100 text-cyan-700',
-                                    'delivered'  => 'bg-green-100 text-green-700',
-                                    'cancelled'  => 'bg-red-100 text-red-700',
-                                    default      => 'bg-gray-100 text-gray-700',
-                                } }}">
+                            <span class="inline-block rounded-full px-2.5 py-0.5 text-xs font-semibold mt-1 {{ $statusClass }}">
                                 {{ ucfirst($order->status->value) }}
                             </span>
                         </div>
