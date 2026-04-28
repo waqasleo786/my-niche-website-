@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShopController;
@@ -62,8 +63,8 @@ Route::middleware('auth')->group(function () {
 // Authenticated Routes
 // -------------------------------------------------------------------
 
-Route::view('/dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
+Route::get('/dashboard', DashboardController::class)
+    ->middleware(['auth'])
     ->name('dashboard');
 
 Route::view('/profile', 'profile')
