@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\DB;
 
 class OrderService
 {
-    public function createFromCart(Cart $cart, User $user, array $checkoutData): Order
+    public function createFromCart(Cart $cart, ?User $user, array $checkoutData): Order
     {
         return DB::transaction(function () use ($cart, $user, $checkoutData) {
             $subtotal      = $cart->getSubtotal();
@@ -24,9 +24,9 @@ class OrderService
             $requiresSlip  = $paymentMethod->requiresSlip();
 
             $order = Order::create([
-                'user_id'                 => $user->id,
+                'user_id'                 => $user?->id,
                 'order_number'            => Order::generateOrderNumber(),
-                'is_b2b'                  => $user->hasRole('b2b_customer'),
+                'is_b2b'                  => $user?->hasRole('b2b_customer') ?? false,
                 'status'                  => $requiresSlip ? OrderStatus::PaymentPending : OrderStatus::Pending,
                 'payment_method'          => $paymentMethod,
                 'payment_status'          => $requiresSlip ? PaymentStatus::SlipSubmitted : PaymentStatus::Pending,

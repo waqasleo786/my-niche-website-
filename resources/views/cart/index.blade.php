@@ -177,20 +177,10 @@
                         </div>
                     </dl>
 
-                    @auth
-                        <a href="{{ route('checkout.index') }}"
-                           class="mt-6 block w-full rounded-lg bg-primary px-4 py-3 text-center text-sm font-semibold text-white shadow-sm hover:bg-primary/90 transition-colors">
-                            {{ __('Proceed to Checkout') }}
-                        </a>
-                    @else
-                        <a href="{{ route('login') }}"
-                           class="mt-6 block w-full rounded-lg bg-primary px-4 py-3 text-center text-sm font-semibold text-white shadow-sm hover:bg-primary/90 transition-colors">
-                            {{ __('Login to Checkout') }}
-                        </a>
-                        <p class="mt-2 text-center text-xs text-gray-400">
-                            {{ __('Your cart will be saved.') }}
-                        </p>
-                    @endauth
+                    <a href="{{ route('checkout.index') }}"
+                       class="mt-6 block w-full rounded-lg bg-primary px-4 py-3 text-center text-sm font-semibold text-white shadow-sm hover:bg-primary/90 transition-colors">
+                        {{ __('Proceed to Checkout') }}
+                    </a>
 
                     <a href="{{ route('shop') }}"
                        class="mt-3 block w-full rounded-lg border border-gray-200 px-4 py-3 text-center text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">

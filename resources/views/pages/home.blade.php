@@ -372,21 +372,12 @@
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
         {{-- Section Header --}}
-        <div class="mb-10 flex flex-col items-center gap-4 text-center sm:flex-row sm:justify-between sm:text-start">
-            <div>
-                <span class="inline-block rounded-full bg-gold/10 px-3.5 py-1 text-xs font-semibold text-gold-dark mb-2">
-                    {{ __('Hand Picked') }}
-                </span>
-                <h2 class="text-2xl font-bold text-gray-900 sm:text-3xl">{{ __('Featured Products') }}</h2>
-                <div class="mt-3 h-1 w-12 rounded-full bg-gold sm:mx-0 mx-auto"></div>
-            </div>
-            <a href="{{ url('/shop') }}"
-               class="inline-flex items-center gap-x-1.5 rounded-xl border border-primary/20 bg-primary/5 px-4 py-2 text-sm font-semibold text-primary transition hover:bg-primary hover:text-white group">
-                {{ __('View All Products') }}
-                <svg class="h-4 w-4 rtl:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                </svg>
-            </a>
+        <div class="mb-10 text-center">
+            <span class="inline-block rounded-full bg-gold/10 px-3.5 py-1 text-xs font-semibold text-gold-dark mb-2">
+                {{ __('Hand Picked') }}
+            </span>
+            <h2 class="text-2xl font-bold text-gray-900 sm:text-3xl">{{ __('Featured Products') }}</h2>
+            <div class="mt-3 h-1 w-12 rounded-full bg-gold mx-auto"></div>
         </div>
 
         {{-- Products Grid --}}

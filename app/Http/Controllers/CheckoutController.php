@@ -43,7 +43,7 @@ class CheckoutController extends Controller
 
     public function store(CheckoutRequest $request): Response
     {
-        /** @var User $user */
+        /** @var User|null $user */
         $user = auth()->user();
         $cart = $this->cartService->getCart();
 
