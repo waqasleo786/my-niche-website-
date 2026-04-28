@@ -7,6 +7,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShopController;
 use Illuminate\Http\Request;
@@ -66,6 +67,10 @@ Route::get('/checkout/confirmation/{order}', [CheckoutController::class, 'confir
 Route::get('/dashboard', DashboardController::class)
     ->middleware(['auth'])
     ->name('dashboard');
+
+Route::get('/orders', [OrderController::class, 'index'])
+    ->middleware(['auth'])
+    ->name('orders.index');
 
 Route::view('/profile', 'profile')
     ->middleware(['auth'])

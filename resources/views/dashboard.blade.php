@@ -64,7 +64,7 @@
             <div class="rounded-2xl bg-white shadow-sm ring-1 ring-gray-100">
                 <div class="flex items-center justify-between border-b border-gray-100 px-5 py-4">
                     <h2 class="text-sm font-bold text-gray-900">{{ __('Recent Orders') }}</h2>
-                    <a href="{{ url('/orders') }}" class="text-xs font-semibold text-primary hover:text-gold transition-colors">
+                    <a href="{{ route('orders.index') }}" class="text-xs font-semibold text-primary hover:text-gold transition-colors">
                         {{ __('View All') }} →
                     </a>
                 </div>
