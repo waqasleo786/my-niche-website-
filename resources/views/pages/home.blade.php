@@ -605,6 +605,17 @@
             @endforeach
         </div>
 
+        {{-- About Us CTA --}}
+        <div class="mt-10 text-center">
+            <a href="{{ url('/about') }}"
+               class="inline-flex items-center gap-x-2 rounded-2xl border-2 border-primary px-8 py-3 text-sm font-bold text-primary transition-all hover:bg-primary hover:text-white hover:shadow-lg hover:-translate-y-0.5 active:scale-95">
+                {{ __('Learn More About Us') }}
+                <svg class="h-4 w-4 rtl:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+            </a>
+        </div>
+
     </div>
 </section>
 
