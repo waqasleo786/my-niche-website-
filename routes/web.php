@@ -9,6 +9,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShopController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 // -------------------------------------------------------------------
@@ -68,6 +70,13 @@ Route::get('/dashboard', DashboardController::class)
 Route::view('/profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
+
+Route::post('/logout', function (Request $request) {
+    Auth::logout();
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+    return redirect('/');
+})->name('logout')->middleware('auth');
 
 require __DIR__ . '/auth.php';
 require __DIR__ . '/payment-callbacks.php';

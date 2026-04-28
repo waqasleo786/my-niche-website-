@@ -59,7 +59,7 @@
                                 {{ __('Full Name') }} <span class="text-red-500">*</span>
                             </label>
                             <input type="text" id="shipping_name" name="shipping_name"
-                                   value="{{ old('shipping_name', auth()->user()->name) }}"
+                                   value="{{ old('shipping_name', auth()->user()?->name ?? '') }}"
                                    class="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary @error('shipping_name') border-red-400 @enderror"
                                    placeholder="Muhammad Ali" required>
                             @error('shipping_name')
@@ -73,7 +73,7 @@
                                 {{ __('Phone Number') }} <span class="text-red-500">*</span>
                             </label>
                             <input type="tel" id="shipping_phone" name="shipping_phone"
-                                   value="{{ old('shipping_phone', auth()->user()->phone ?? '') }}"
+                                   value="{{ old('shipping_phone', auth()->user()?->phone ?? '') }}"
                                    class="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary @error('shipping_phone') border-red-400 @enderror"
                                    placeholder="03001234567" maxlength="11" required>
                             @error('shipping_phone')
