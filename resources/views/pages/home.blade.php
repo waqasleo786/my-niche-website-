@@ -44,27 +44,23 @@
     x-data="{
         current: 0,
         total: 3,
-        interval: null,
+        timer: null,
+        pgTimer: null,
         progress: 0,
-        progressInterval: null,
-        next() { this.current = (this.current + 1) % this.total; this.resetProgress(); },
-        prev() { this.current = (this.current - 1 + this.total) % this.total; this.resetProgress(); },
-        goTo(i) { this.current = i; this.resetProgress(); },
-        resetProgress() { this.progress = 0; },
-        startAutoPlay() {
-            this.interval = setInterval(() => this.next(), 5500);
-            this.progressInterval = setInterval(() => {
-                this.progress = Math.min(100, this.progress + (100 / (5500 / 50)));
-            }, 50);
+        next() { this.current = (this.current + 1) % this.total; this.restart(); },
+        prev() { this.current = (this.current - 1 + this.total) % this.total; this.restart(); },
+        goTo(i) { this.current = i; this.restart(); },
+        stop() { clearInterval(this.timer); clearInterval(this.pgTimer); },
+        start() {
+            this.stop();
+            this.timer   = setInterval(() => this.next(), 5000);
+            this.pgTimer = setInterval(() => { this.progress = Math.min(100, this.progress + 1); }, 50);
         },
-        stopAutoPlay() {
-            clearInterval(this.interval);
-            clearInterval(this.progressInterval);
-        }
+        restart() { this.progress = 0; this.start(); }
     }"
-    x-init="startAutoPlay()"
-    @mouseenter="stopAutoPlay()"
-    @mouseleave="startAutoPlay()"
+    x-init="start()"
+    @mouseenter="stop()"
+    @mouseleave="start()"
 >
     @php
         $slides = [
