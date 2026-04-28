@@ -7,6 +7,7 @@ namespace App\Providers;
 use App\Listeners\MergeCartOnLogin;
 use App\Services\CartService;
 use Illuminate\Auth\Events\Login;
+use Illuminate\Auth\Middleware\RedirectIfAuthenticated;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -20,6 +21,8 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        RedirectIfAuthenticated::redirectUsing(fn () => url('/'));
+
         Event::listen(Login::class, MergeCartOnLogin::class);
 
         View::composer('partials.header', function (\Illuminate\View\View $view) {
