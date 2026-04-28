@@ -118,14 +118,19 @@
                     </div>
                     @if($product->b2b_price)
                         <div class="border-t border-gray-200 pt-3">
-                            <div class="flex items-center gap-x-2">
-                                <span class="rounded-md bg-gold/10 px-2 py-0.5 text-xs font-bold text-gold-dark">{{ __('B2B Price') }}</span>
-                                <span class="text-xl font-bold text-gray-800">{{ $product->getFormattedB2bPrice() }}</span>
-                                <span class="text-sm text-gray-400">/ {{ __('piece') }}</span>
-                            </div>
-                            <p class="mt-1 text-xs text-gray-500">
-                                {{ __('Minimum') }} <strong>{{ $product->min_b2b_quantity }}</strong> {{ __('pieces for B2B pricing') }}
-                            </p>
+                            <a href="{{ url('/contact') }}"
+                               class="inline-flex items-center gap-x-2 rounded-xl bg-gold/10 border border-gold/30 px-4 py-2.5 transition hover:bg-gold/20">
+                                <svg class="h-4 w-4 text-gold-dark shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                                </svg>
+                                <div>
+                                    <div class="text-xs font-bold text-gold-dark">{{ __('Wholesale Price Available') }}</div>
+                                    <div class="text-xs text-gray-500">{{ __('Contact us for bulk / B2B pricing') }}</div>
+                                </div>
+                                <svg class="h-3.5 w-3.5 text-gold-dark ms-1 rtl:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </a>
                         </div>
                     @endif
                 </div>

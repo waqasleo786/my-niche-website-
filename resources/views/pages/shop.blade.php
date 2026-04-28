@@ -225,9 +225,8 @@
                                 {{ $product->getFormattedPrice() }}
                             </div>
                             @if($product->b2b_price)
-                                <div class="text-xs text-gray-500">
-                                    <span class="font-semibold text-gold-dark">{{ __('B2B') }}:</span>
-                                    {{ $product->getFormattedB2bPrice() }}
+                                <div class="text-xs font-semibold text-gold-dark">
+                                    {{ __('Wholesale price available') }}
                                 </div>
                             @endif
                         </div>

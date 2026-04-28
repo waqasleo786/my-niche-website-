@@ -84,7 +84,7 @@
                 'heading'    => __('Branded Gifts for Your Business'),
                 'sub'        => __('Custom logo printing on keychains, pens, power banks & more.'),
                 'text_color' => 'text-emerald-200',
-                'trust'      => [__('Minimum 50 pieces per order'), __('Custom logo printing available'), __('Up to 40% off retail price')],
+                'trust'      => [__('Minimum 50 pieces per order'), __('Custom logo printing available'), __('Exclusive wholesale pricing')],
                 'products'   => [
                     ['icon' => 'M9 3v10m3-7l-3 3-3-3m9 4a3 3 0 11-6 0 3 3 0 016 0z M5 20h14', 'name' => __('USB Drives'), 'price' => 'Rs. 720+', 'color' => 'bg-cyan-500/20 text-cyan-300'],
                     ['icon' => 'M9 3h6l1 3H8L9 3zM8 6v14a1 1 0 001 1h6a1 1 0 001-1V6H8z M8 10h8', 'name' => __('Bottles & Tumblers'), 'price' => 'Rs. 950+', 'color' => 'bg-teal-500/20 text-teal-300'],
@@ -474,10 +474,8 @@
                                 {{ $product->getFormattedPrice() }}
                             </div>
                             @if($product->b2b_price)
-                                <div class="text-xs text-gray-500">
-                                    <span class="font-semibold text-gold-dark">{{ __('B2B') }}:</span>
-                                    {{ $product->getFormattedB2bPrice() }}
-                                    <span class="text-gray-400">/ {{ __('bulk') }}</span>
+                                <div class="text-xs text-gold-dark font-semibold">
+                                    {{ __('Wholesale price available') }}
                                 </div>
                             @endif
                         </div>
@@ -647,7 +645,7 @@
                 </p>
                 <ul class="mt-5 grid grid-cols-1 gap-y-2 sm:grid-cols-2 text-sm text-blue-200">
                     @foreach([
-                        __('Up to 40% off retail price'),
+                        __('Exclusive wholesale pricing'),
                         __('Dedicated account manager'),
                         __('Custom logo printing'),
                         __('Priority order processing'),
