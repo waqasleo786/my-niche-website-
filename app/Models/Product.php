@@ -31,6 +31,7 @@ class Product extends Model implements HasMedia
         'stock_quantity',
         'is_active',
         'is_featured',
+        'size_units',
     ];
 
     protected $casts = [
@@ -40,6 +41,7 @@ class Product extends Model implements HasMedia
         'stock_quantity'   => 'integer',
         'is_active'        => 'boolean',
         'is_featured'      => 'boolean',
+        'size_units'       => 'decimal:1',
     ];
 
     // -------------------------------------------------------------------

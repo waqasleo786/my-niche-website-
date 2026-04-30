@@ -69,6 +69,20 @@ class UserForm
                             ->maxLength(100),
                     ]),
 
+                Section::make('Page Access')
+                    ->description('Grant or revoke access to restricted pages')
+                    ->schema([
+                        Toggle::make('gift_builder_access')
+                            ->label('Gift Box Builder Access')
+                            ->helperText('Allow this user to access the /gift-builder page')
+                            ->dehydrated(false)
+                            ->afterStateHydrated(function ($component, $record) {
+                                if ($record) {
+                                    $component->state($record->hasPermissionTo('view_gift_builder'));
+                                }
+                            }),
+                    ]),
+
             ]);
     }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\GiftBuilderController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
@@ -67,6 +68,11 @@ Route::get('/checkout/confirmation/{order}', [CheckoutController::class, 'confir
 Route::get('/dashboard', DashboardController::class)
     ->middleware(['auth'])
     ->name('dashboard');
+
+// Gift Box Builder — restricted to approved users only
+Route::get('/gift-builder', GiftBuilderController::class)
+    ->middleware(['auth', 'permission:view_gift_builder'])
+    ->name('gift-builder');
 
 Route::get('/orders', [OrderController::class, 'index'])
     ->middleware(['auth'])

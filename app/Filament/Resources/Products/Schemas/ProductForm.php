@@ -82,6 +82,14 @@ class ProductForm
                             ->numeric()
                             ->default(0)
                             ->minValue(0),
+
+                        TextInput::make('size_units')
+                            ->label('Gift Box Size Units')
+                            ->numeric()
+                            ->default(1.0)
+                            ->step(0.5)
+                            ->minValue(0.5)
+                            ->helperText('Space this product occupies in a gift box (pen=1, keychain=0.5, power bank=3, bottle=5)'),
                     ]),
 
                 Section::make('Visibility')

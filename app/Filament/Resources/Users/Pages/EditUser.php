@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\Users\Pages;
 
 use App\Filament\Resources\Users\UserResource;
@@ -15,5 +17,16 @@ class EditUser extends EditRecord
         return [
             DeleteAction::make(),
         ];
+    }
+
+    protected function afterSave(): void
+    {
+        $giftBuilderAccess = $this->data['gift_builder_access'] ?? false;
+
+        if ($giftBuilderAccess) {
+            $this->record->givePermissionTo('view_gift_builder');
+        } else {
+            $this->record->revokePermissionTo('view_gift_builder');
+        }
     }
 }

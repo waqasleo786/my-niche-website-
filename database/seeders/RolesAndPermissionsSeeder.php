@@ -35,6 +35,9 @@ class RolesAndPermissionsSeeder extends Seeder
 
             // Categories
             'manage categories',
+
+            // Gift Box Builder (per-user access, granted manually by admin)
+            'view_gift_builder',
         ];
 
         foreach ($permissions as $permission) {

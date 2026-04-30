@@ -1,0 +1,21 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Filament\Resources\GiftBoxes\Pages;
+
+use App\Filament\Resources\GiftBoxes\GiftBoxResource;
+use Filament\Actions\DeleteAction;
+use Filament\Resources\Pages\EditRecord;
+
+class EditGiftBox extends EditRecord
+{
+    protected static string $resource = GiftBoxResource::class;
+
+    protected function getHeaderActions(): array
+    {
+        return [
+            DeleteAction::make(),
+        ];
+    }
+}
