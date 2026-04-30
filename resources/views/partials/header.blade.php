@@ -115,15 +115,17 @@
                         </div>
                     </div>
                 @else
-                    {{-- Login Link (guest, desktop) --}}
-                    <a href="{{ route('login') }}"
-                       class="hidden md:inline-flex items-center gap-x-1.5 rounded-lg border border-gray-200 px-3 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors">
-                        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                  d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/>
-                        </svg>
-                        {{ __('Login') }}
-                    </a>
+                    {{-- Guest Buttons (desktop) --}}
+                    <div class="hidden md:flex items-center gap-x-2">
+                        <a href="{{ route('login') }}"
+                           class="inline-flex items-center rounded-lg border border-gray-200 px-3 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors">
+                            {{ __('Login') }}
+                        </a>
+                        <a href="{{ route('register') }}"
+                           class="inline-flex items-center rounded-lg bg-primary px-3 py-1.5 text-sm font-medium text-white hover:bg-primary/90 transition-colors">
+                            {{ __('Register') }}
+                        </a>
+                    </div>
                 @endauth
 
                 {{-- Mobile Menu Toggle --}}
@@ -204,14 +206,22 @@
                     </form>
                 </div>
             @else
-                <div class="border-t border-gray-100 mt-1 pt-2">
+                <div class="border-t border-gray-100 mt-1 pt-2 space-y-1">
                     <a href="{{ route('login') }}"
-                       class="flex items-center gap-x-2 rounded-md px-3 py-2 text-sm font-medium text-primary hover:bg-primary/5">
-                        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                       class="flex items-center gap-x-2 rounded-md px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-primary">
+                        <svg class="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                   d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/>
                         </svg>
-                        {{ __('Login / Register') }}
+                        {{ __('Login') }}
+                    </a>
+                    <a href="{{ route('register') }}"
+                       class="flex items-center gap-x-2 rounded-md px-3 py-2 text-sm font-semibold text-primary hover:bg-primary/5">
+                        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/>
+                        </svg>
+                        {{ __('Create Account') }}
                     </a>
                 </div>
             @endauth
