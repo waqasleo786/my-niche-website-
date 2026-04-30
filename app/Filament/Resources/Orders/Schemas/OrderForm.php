@@ -108,24 +108,26 @@ class OrderForm
                                 $rows = '';
                                 foreach ($record->items as $item) {
                                     $productName = $item->product?->name ?? 'Product Deleted';
-                                    $sku         = $item->product?->sku ? '<span class="text-xs text-gray-400 block">' . e($item->product->sku) . '</span>' : '';
-                                    $rows .= '<tr class="border-b border-gray-100">'
-                                        . '<td class="py-3 pr-4 text-sm text-gray-800">' . e($productName) . $sku . '</td>'
-                                        . '<td class="py-3 px-4 text-sm text-gray-600 text-center">' . $item->quantity . '</td>'
-                                        . '<td class="py-3 px-4 text-sm text-gray-600 text-right">Rs. ' . number_format((float) $item->unit_price, 2) . '</td>'
-                                        . '<td class="py-3 pl-4 text-sm font-medium text-gray-800 text-right">Rs. ' . number_format((float) $item->total_price, 2) . '</td>'
+                                    $sku         = $item->product?->sku
+                                        ? '<span style="font-size:11px;color:#9ca3af;display:block;margin-top:2px;">' . e($item->product->sku) . '</span>'
+                                        : '';
+                                    $rows .= '<tr style="border-bottom:1px solid #f3f4f6;">'
+                                        . '<td style="padding:10px 16px 10px 0;font-size:13px;color:#111827;width:55%;">' . e($productName) . $sku . '</td>'
+                                        . '<td style="padding:10px 16px;font-size:13px;color:#6b7280;text-align:center;width:10%;">' . $item->quantity . '</td>'
+                                        . '<td style="padding:10px 16px;font-size:13px;color:#6b7280;text-align:right;width:17.5%;">Rs. ' . number_format((float) $item->unit_price, 2) . '</td>'
+                                        . '<td style="padding:10px 0 10px 16px;font-size:13px;font-weight:600;color:#111827;text-align:right;width:17.5%;">Rs. ' . number_format((float) $item->total_price, 2) . '</td>'
                                         . '</tr>';
                                 }
 
                                 return new \Illuminate\Support\HtmlString('
-                                    <div class="overflow-x-auto">
-                                        <table class="w-full text-left">
+                                    <div style="overflow-x:auto;">
+                                        <table style="width:100%;border-collapse:collapse;table-layout:fixed;">
                                             <thead>
-                                                <tr class="border-b-2 border-gray-200">
-                                                    <th class="pb-2 pr-4 text-xs font-semibold uppercase tracking-wide text-gray-500">Product</th>
-                                                    <th class="pb-2 px-4 text-xs font-semibold uppercase tracking-wide text-gray-500 text-center">Qty</th>
-                                                    <th class="pb-2 px-4 text-xs font-semibold uppercase tracking-wide text-gray-500 text-right">Unit Price</th>
-                                                    <th class="pb-2 pl-4 text-xs font-semibold uppercase tracking-wide text-gray-500 text-right">Line Total</th>
+                                                <tr style="border-bottom:2px solid #e5e7eb;">
+                                                    <th style="padding:0 16px 8px 0;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#6b7280;text-align:left;width:55%;">Product</th>
+                                                    <th style="padding:0 16px 8px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#6b7280;text-align:center;width:10%;">Qty</th>
+                                                    <th style="padding:0 16px 8px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#6b7280;text-align:right;width:17.5%;">Unit Price</th>
+                                                    <th style="padding:0 0 8px 16px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#6b7280;text-align:right;width:17.5%;">Line Total</th>
                                                 </tr>
                                             </thead>
                                             <tbody>' . $rows . '</tbody>
