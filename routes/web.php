@@ -89,5 +89,14 @@ Route::post('/logout', function (Request $request) {
     return redirect('/');
 })->name('logout')->middleware('auth');
 
+// -------------------------------------------------------------------
+// Admin Utility Routes (admin-only)
+// -------------------------------------------------------------------
+
+Route::get('/admin/orders/{order}/label', function (\App\Models\Order $order) {
+    $order->load('items.product');
+    return view('admin.shipping-label', compact('order'));
+})->middleware(['auth', 'role:admin'])->name('admin.orders.label');
+
 require __DIR__ . '/auth.php';
 require __DIR__ . '/payment-callbacks.php';

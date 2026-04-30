@@ -26,6 +26,14 @@ class EditOrder extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
+            Action::make('printLabel')
+                ->label('Print Shipping Label')
+                ->icon('heroicon-o-printer')
+                ->color('gray')
+                ->action(function (): void {
+                    $url = route('admin.orders.label', $this->record);
+                    $this->js("window.open('" . $url . "', '_blank')");
+                }),
             $this->verifyPaymentAction(),
             $this->rejectPaymentAction(),
             DeleteAction::make(),
