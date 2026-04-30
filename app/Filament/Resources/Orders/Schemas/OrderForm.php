@@ -93,6 +93,48 @@ class OrderForm
                     ])
                     ->visible(fn ($record) => $record?->hasPaymentSlip() || $record?->payment_method?->requiresSlip()),
 
+                Section::make('Order Items')
+                    ->schema([
+                        Placeholder::make('items_table')
+                            ->label('')
+                            ->columnSpanFull()
+                            ->content(function ($record) {
+                                if (! $record || $record->items->isEmpty()) {
+                                    return new \Illuminate\Support\HtmlString(
+                                        '<p class="text-sm text-gray-500">No items found.</p>'
+                                    );
+                                }
+
+                                $rows = '';
+                                foreach ($record->items as $item) {
+                                    $productName = $item->product?->name ?? 'Product Deleted';
+                                    $sku         = $item->product?->sku ? '<span class="text-xs text-gray-400 block">' . e($item->product->sku) . '</span>' : '';
+                                    $rows .= '<tr class="border-b border-gray-100">'
+                                        . '<td class="py-3 pr-4 text-sm text-gray-800">' . e($productName) . $sku . '</td>'
+                                        . '<td class="py-3 px-4 text-sm text-gray-600 text-center">' . $item->quantity . '</td>'
+                                        . '<td class="py-3 px-4 text-sm text-gray-600 text-right">Rs. ' . number_format((float) $item->unit_price, 2) . '</td>'
+                                        . '<td class="py-3 pl-4 text-sm font-medium text-gray-800 text-right">Rs. ' . number_format((float) $item->total_price, 2) . '</td>'
+                                        . '</tr>';
+                                }
+
+                                return new \Illuminate\Support\HtmlString('
+                                    <div class="overflow-x-auto">
+                                        <table class="w-full text-left">
+                                            <thead>
+                                                <tr class="border-b-2 border-gray-200">
+                                                    <th class="pb-2 pr-4 text-xs font-semibold uppercase tracking-wide text-gray-500">Product</th>
+                                                    <th class="pb-2 px-4 text-xs font-semibold uppercase tracking-wide text-gray-500 text-center">Qty</th>
+                                                    <th class="pb-2 px-4 text-xs font-semibold uppercase tracking-wide text-gray-500 text-right">Unit Price</th>
+                                                    <th class="pb-2 pl-4 text-xs font-semibold uppercase tracking-wide text-gray-500 text-right">Line Total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>' . $rows . '</tbody>
+                                        </table>
+                                    </div>
+                                ');
+                            }),
+                    ]),
+
                 Section::make('Shipping Details')
                     ->columns(2)
                     ->schema([
